@@ -1,0 +1,50 @@
+body{
+	background: #660066;
+	padding-top: 100px;
+	text-align: center;
+}
+
+.btn{
+	-moz-transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+	background: #fff;
+	background: green;
+	border:none;
+	cursor: pointer;
+	font-size:25px;
+	outline:none;
+	padding: 20px 70px;
+	position: relative;
+	transition: all 0.4s;
+  	overflow: hidden;
+  
+	span{
+		display: inline-block;
+	    -moz-transition: inherit;
+	    -webkit-transition: inherit;
+    	transition: inherit;
+	}
+
+	&:before{
+		background-color: #999;
+		content: 'OFF';
+		left: 0;
+		padding:inherit;
+		position: absolute;
+		top: -100%;
+	  	-moz-transition: inherit;
+	  	-webkit-transition: inherit;
+    	transition: inherit;
+	}
+  &:hover {
+    &:before{
+      top:0;
+    }
+    span {
+      -moz-transform: translateY(200%);
+      -ms-transform: translateY(200%);
+      -webkit-transform: translateY(200%);
+      transform: translateY(200%);
+    }
+  }
+}
