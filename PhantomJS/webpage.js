@@ -1,12 +1,12 @@
+//need to install phantomJS and set environment variables
+//then launch by cmd >phantomjs webpage.js
+
 var page = require('webpage').create();
 
 page.viewportSize = {
   width: 1920,
   height: 1200
 };
-	// setTimeout(function(){
-	// 	page.render("2.png");
-	// },2000);
 
 function getItemsFromList(){
 	console.log(" - Get Items From List");
