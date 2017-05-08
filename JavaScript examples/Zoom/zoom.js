@@ -1,14 +1,15 @@
 let photo = document.querySelector(".photo");
 	mag = null;
 	zoom = null;
-
+// create new elements in tag div with specify class
+// and set new variable 
 function createMagnifier(){
 	let magElement = document.createElement('div');
 	magElement.classList.add('magnifier');
 	mag = magElement;
 	photo.appendChild(magElement);
 }
-
+// if mag exist then remove magnifier and set false.
 function removeMagnifier(){
 	if(mag){
 	photo.removeChild(mag);
@@ -29,7 +30,7 @@ function removeZoom(){
 	zoom=null;
 	}
 }
-
+// functions includes create and remove actions on site
 function enterMouse(){
 	createMagnifier();
 	createZoom();
@@ -41,6 +42,7 @@ function leaveMouse(){
 }
 
 function onMouseMove(ev){
+	// get coordinates of x and y value by event
 	let photoBounding = this.getBoundingClientRect(),
 	x = ev.clientX - photoBounding.left,
 	y = ev.clientY - photoBounding.top,
@@ -49,7 +51,7 @@ function onMouseMove(ev){
 	maxPosition = photoSize - magSize;
 	x -= magSize/2;
 	y -= magSize/2;
-
+	// These conditions prevent magnifier get out of range
 	if(x + magSize > photoSize){
 		x = maxPosition;
 	}
@@ -68,9 +70,10 @@ function onMouseMove(ev){
 
 	let transformCSS = "translateX("+ x +"px)translateY("+ y +"px)";
 	mag.style.transform = transformCSS;
+	// dynamic view of image
 	zoom.style.backgroundPosition = -x*2 + "px " + -y * 2 + "px";
 }
-
+// events mouseenter, mouseleave and mousemove load functions
 photo.addEventListener('mouseenter', enterMouse);
 photo.addEventListener('mouseleave', leaveMouse);
 photo.addEventListener('mousemove', onMouseMove)
