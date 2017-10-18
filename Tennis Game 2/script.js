@@ -17,14 +17,14 @@ document.addEventListener("keyup", keyUpHandler);
 function keyDownHandler(ev){
 	if(ev.keyCode == 39){
 		rightPressed = true;
-	}else if(ev.keyCode == 37){
+	} else if(ev.keyCode == 37){
 		leftPressed = true;
 	}
 }
 function keyUpHandler(ev){
 	if(ev.keyCode == 39){
 		rightPressed = false;
-	}else if(ev.keyCode == 37){
+	} else if(ev.keyCode == 37){
 		leftPressed = false;
 	}
 }
@@ -54,12 +54,19 @@ let draw = () =>{
 	if(x >= canvas.width || x <= 0 ){
 		xSpeed = -xSpeed;
 	}
-	if(y <= 0 || y >= canvas.height){
+	if(y + ySpeed <= ballRadius){
 			ySpeed = -ySpeed;
+	} else if(y+ySpeed >= canvas.height - ballRadius){
+		if(x > paddleX && x < paddleX + paddleWidth){
+			ySpeed = -ySpeed;
+		} else{
+			alert("Game Over");
+			document.location.reload();
+		}
 	}
 	if(rightPressed && paddleX <= canvas.width - paddleWidth){
 		paddleX += 7;
-	}else if (leftPressed && paddleX >= 0){
+	} else if (leftPressed && paddleX >= 0){
 		paddleX -= 7 ;
 	}
 }
