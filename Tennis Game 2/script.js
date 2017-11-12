@@ -92,7 +92,7 @@ let drawLives = () =>{
 	ctx.fillText("Lives: " + lives, canvas.width - 110,50);
 }
 
-let collisionDetcetion = () =>{
+let collisionDetection = () =>{
 	for(c=0;c<brickColumnCount;c++){
 		for(r=0;r<brickRowCount;r++){
 			let br = bricks[c][r];
