@@ -12,9 +12,6 @@ function Snake(){
 	}
 
 	this.eat = function(pos){
-		if(pos >= width || pos >=height){
-
-		}
 		let d = dist(this.x, this.y, pos.x, pos.y);
 		if(d<1){
 			this.total++;
