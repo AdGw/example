@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "Popup message",
+  "version": "0.1",
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": ["content.js"]
+    }
+  ],
+  "permissions": ["tabs"],
+  "browser_action": {
+    "default_popup": "sketch/index.html",
+    "default_title": "Generate a maze!"
+  }
+}
