@@ -1,0 +1,40 @@
+/* hover attribute will change style of menu element*/
+
+body{
+	padding: 50px;
+}
+
+.menu {
+	width: 40px;
+	height: 35px;
+	border: 0px;
+	border-top: 5px solid #000000;
+	background: transparent;
+	position: relative;
+	transition: 0.3s transform linear;
+}
+
+.menu::before, .menu::after{
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	border-top: 5px solid #000000;
+	transform: translateY(10px);
+	transition: 0.3s transform linear;
+}
+
+.menu::after {
+	transform: translateY(25px);
+}
+
+.menu:hover{
+	transform: rotate(45deg) translateY(5px);
+	border:none;
+}
+
+.menu:hover::after{
+	transform: rotate(-90deg) translateX(-10px);
+	
+}

@@ -1,0 +1,59 @@
+body {
+ background: pink; 
+ display: flex;
+  justify-content: center;
+}
+
+.rose {
+  width: 10px;
+  height: 300px;
+  background: #198419;
+  position: relative;
+  bottom: -50px;
+  margin-top: 130px;
+  border-radius: 20%;
+  box-shadow: 
+    0 -350px 0 50px #d31717;
+}
+
+.rose::after {
+  content: '';
+  width: 10px;
+  height: 5px;
+  position: absolute;
+  background: #096809;
+  border-radius: 4px;
+  top: 0;
+  right: 0;
+  box-shadow:
+    3px 10px 0 #096809,
+    4px 40px 0 #096809,
+    3px 150px 0 #096809,
+    2px 200px 0 #096809,
+    2px -100px 0 20px #ff0000,
+    0px -100px 0 22px #d31717,
+    0px -100px 0 26px #ff0000,
+    0px -100px 0 28px #d31717,
+    0px -100px 0 32px #ff0000,
+    0px -100px 0 34px #d31717,
+    0px -100px 0 38px #ff0000,
+    0px -100px 0 40px #d31717,
+    0px -100px 0 44px #ff0000,
+    0px -100px 0 46px #d31717,
+    0px -100px 0 49px #ff0000,
+    0 -150px 0 70px pink;
+}
+
+.rose::before {
+  content: '';
+  width: 100px;
+  height: 50px;
+  position: absolute;
+  border-top-right-radius: 100%;
+  border-bottom-left-radius: 100%;
+  background: #008000;
+  top: 80px;
+  right: 3px;
+  box-shadow:
+    95px 60px 0 #096809;
+}
