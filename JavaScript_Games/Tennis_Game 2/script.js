@@ -10,23 +10,28 @@ let canvas = document.getElementById('game');
 	paddleX = (canvas.width - paddleWidth)/2;
 	rightPressed = false;
 	leftPressed = false;
-	brickRowCount = 5;
+	brickRowCount = 8;
 	brickColumnCount = 8;
 	brickWidth = 75;
-	brickHeight = 20;
+	brickHeight = 25;
 	brickPadding = 10;
 	brickOffsetTop = 70;
 	brickOffsetLeft = 70;
 	bricks = [];
 	score = 0;
 	lives = 3;
+	level = 1;
+	maxLevel = 3;
 
+let initBricks = () =>{
 	for(c=0;c<brickColumnCount;c++){
 		bricks[c] = [];
 		for(r=0;r<brickRowCount;r++){
 			bricks[c][r] = {x: 0, y: 0, status: 1};
 		}
 	}
+}
+initBricks();
 document.addEventListener("keydown", keyDownHandler);
 document.addEventListener("keyup", keyUpHandler);
 
@@ -92,6 +97,12 @@ let drawLives = () =>{
 	ctx.fillText("Lives: " + lives, canvas.width - 110,50);
 }
 
+let drawLevel = () =>{
+	ctx.fillStyle = "#D455DF";
+	ctx.fillText("Level: " + level,350,50);
+	ctx.font="30px Arial";
+}
+
 let collisionDetection = () =>{
 	for(c=0;c<brickColumnCount;c++){
 		for(r=0;r<brickRowCount;r++){
@@ -102,8 +113,14 @@ let collisionDetection = () =>{
 					br.status = 0;
 					score++;
 					if(score == brickRowCount* brickColumnCount){
-						alert("You Win!");
-						document.location.reload();
+						if(level == maxLevel){
+							alert("You Win!");
+							document.location.reload();
+						}else{
+							level++;
+							score = 0;
+							initBricks();
+						}
 					}
 				}
 			}
@@ -119,6 +136,7 @@ let draw = () =>{
 	collisionDetection();
 	drawScore();
 	drawLives();
+	drawLevel();
 
 	x += xSpeed;
 	y += ySpeed;
