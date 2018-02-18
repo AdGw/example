@@ -1,16 +1,16 @@
 let canvas = document.getElementById('game');
-	ctx = canvas.getContext('2d'),
-	x = canvas.width/2,
-	y = canvas.height/2;
+	ctx = canvas.getContext('2d');
+	x = (canvas.width/2) + Math.floor(Math.random()*100) - 20;
+	y = (canvas.height/2 + 100) + Math.floor(Math.random()*100) - 20;
 	xSpeed = -6;
 	ySpeed = -6;
-	ballRadius = 10;
+	ballRadius = 25;
 	paddleHeight = 20;
 	paddleWidth = 200;
 	paddleX = (canvas.width - paddleWidth)/2;
 	rightPressed = false;
 	leftPressed = false;
-	brickRowCount = 8;
+	brickRowCount = 4;
 	brickColumnCount = 8;
 	brickWidth = 75;
 	brickHeight = 25;
@@ -22,7 +22,10 @@ let canvas = document.getElementById('game');
 	lives = 3;
 	level = 1;
 	maxLevel = 3;
-
+	paused = false;
+	ball = new Image();
+	ball.src = "https://cdn.pixabay.com/photo/2013/07/12/14/09/football-147854_960_720.png";
+	
 let initBricks = () =>{
 	for(c=0;c<brickColumnCount;c++){
 		bricks[c] = [];
@@ -46,7 +49,7 @@ let drawBricks = () =>{
 				bricks[c][r].y = brickY;
 				ctx.beginPath();
 				ctx.rect(brickX,brickY,brickWidth, brickHeight);
-				ctx.fillStyle = "D455DF";
+				ctx.fillStyle = "red";
 				ctx.fill();
 				ctx.closePath();
 			}
@@ -78,11 +81,9 @@ let drawPaddleX = () =>{
 }
 
 let drawBall = () =>{
-	ctx.beginPath();
-	ctx.arc(x,y, ballRadius, 0, Math.PI*2, false);
-	ctx.fillStyle = "#D455DF";
-	ctx.fill();
-	ctx.closePath();
+
+	ctx.drawImage(ball, x,y, ballRadius, ballRadius);
+
 }
 
 let drawScore = () =>{
@@ -112,14 +113,33 @@ let collisionDetection = () =>{
 					ySpeed = -ySpeed;
 					br.status = 0;
 					score++;
-					if(score == brickRowCount* brickColumnCount){
+					if(score == brickColumnCount * brickRowCount){
 						if(level == maxLevel){
 							alert("You Win!");
 							document.location.reload();
 						}else{
 							level++;
-							score = 0;
+							brickRowCount++;
 							initBricks();
+							score = 0;
+							xSpeed +=1;
+							ySpeed = -ySpeed;
+							ySpeed +=1;
+							x = (canvas.width/2) + Math.floor(Math.random()*100) - 20;
+							y = (canvas.height/2 + 100) + Math.floor(Math.random()*100) - 20;
+							paddleX = (canvas.width-paddleWidth);
+							paused = true;
+							ctx.beginPath();
+							ctx.rect(0,0,canvas.width, canvas.height);
+							ctx.fillStyle = '#0095DD';
+							ctx.fill();
+							ctx.font = '32px Arial';
+							ctx.fillStyle = "#FFFFFF";
+							ctx.fillText('Level ' + (level - 1) + ' completed', 280, canvas.height/2);
+							setTimeout(function(){
+								paused = false;
+								draw();
+							},1500);
 						}
 					}
 				}
@@ -147,7 +167,6 @@ let draw = () =>{
 			ySpeed = -ySpeed;
 	} else if(y+ySpeed >= canvas.height - ballRadius){
 		if(x > paddleX && x < paddleX + paddleWidth){
-			ySpeed = 6;
 			ySpeed = -ySpeed;
 		} else{
 			lives--;
@@ -155,17 +174,20 @@ let draw = () =>{
 				alert("Lost");
 				document.location.reload();
 			}else{
-				x = canvas.width/2;
-				y = canvas.height/2;
+				x = (canvas.width/2) + Math.floor(Math.random()*100) - 20;
+				ySpeed = -ySpeed;
+				y = (canvas.height/2 + 100) + Math.floor(Math.random()*100) - 20;
 				paddleX = (canvas.width-paddleWidth);
 			}
 		}
 	}
 	if(rightPressed && paddleX <= canvas.width - paddleWidth){
-		paddleX += 6;
+		paddleX += 8;
 	} else if (leftPressed && paddleX >= 0){
-		paddleX -= 6 ;
+		paddleX -= 8 ;
 	}
-	requestAnimationFrame(draw);
+	if(!paused){
+		requestAnimationFrame(draw);
+	}
 }
 draw();
