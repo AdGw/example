@@ -10,7 +10,7 @@
 
 // Sigmoid function
 // This is used for activation
-// https://en.wikipedia.org/wiki/Sigmoid_function
+
 NeuralNetwork.sigmoid = function(x) {
   var y = 1 / (1 + pow(Math.E, -x));
   return y;
