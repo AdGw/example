@@ -17,7 +17,7 @@ sum(df['default'] == 1)
 X = df.iloc[:,1:6].values
 y = df['default'].values
 
-#Splitting the dataset into train et and test set
+#Splitting the dataset into train set and test set
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.25, random_state=0)
@@ -58,7 +58,20 @@ print("precision score = {0:.4f}".format(precision_score(y_test, y_pred)))
 print("recall score = {0:.4f}".format(recall_score(y_test, y_pred)))
 
 
+"""
+Linear Regression Training set
+[[83 19]
+ [15 82]]
+precision score = 0.8119
+recall score = 0.8454
 
+Linear Regression Test set
+[[23  7]
+ [ 6 31]]
+precision score = 0.8158
+recall score = 0.8378
+
+"""
 
 
 
