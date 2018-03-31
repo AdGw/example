@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Spyder Editor
-
-Predictions
-This is a temporary script file.
-"""
 
 import numpy as np
 import pandas as pd
