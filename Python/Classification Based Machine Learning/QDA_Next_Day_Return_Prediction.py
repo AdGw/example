@@ -4,7 +4,7 @@ import pandas as pd
 lags = 5
 start_test = pd.to_datetime('2018-03-31')
 
-from sklearn.linear_model import LogisticRegression
+from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis as QDA
 
 ts = pd.read_csv('XMA.csv', index_col = 'Date')
 ts.index = pd.to_datetime(ts.index)
@@ -35,14 +35,16 @@ y_test = y[y.index >= start_test]
 
 #Create dataframe predictions
 pred = pd.DataFrame(index=y_test.index)
-lr = LogisticRegression()
-lr.fit(X_train, y_train)
-y_pred = lr.predict(X_test)
+qda = QDA()
+qda.fit(X_train, y_train)
+y_pred = qda.predict(X_test)
 
 pred = (1.0 + (y_pred == y_test))/2
 hit_rate = np.mean(pred)
-print("Logistic Regression {:.4f}", format(hit_rate))
+
+print("Quadratic Discriminant Analysis {:.4f}", format(hit_rate))
 
 """
-    Logistic Regression {:.4f} 0.775
+    Quadratic Discriminant Analysis {:.4f} 0.517
 """
+
