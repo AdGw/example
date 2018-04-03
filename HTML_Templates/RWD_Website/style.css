@@ -1,0 +1,54 @@
+body {
+	font: 15px/1.5 Arial, Helvetica, sans-serif;
+	padding: 0;
+	margin: 0;
+	background-color: #f4f4f4; 
+}
+
+.container{
+	width: 80%;
+	margin: auto;
+	overflow: hidden;
+}
+
+header{
+	background: #35454a;
+	color:#ffffff;
+	padding-top: 25px;
+	min-height: 70px;
+	border-bottom: #ff0000 3px solid;
+}
+
+header a{
+	color: #ffffff;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 15px; 
+}
+
+header li{
+	float: left;
+	display: inline;
+	padding: 0 25px 0 25px;
+}
+
+header #brand{
+	float: left;
+}
+
+header #brand h1{
+	margin: 0;
+}
+
+header nav{
+	float: right;
+}
+
+header .current a{
+	color: #ff0000;
+}
+
+header a:hover{
+	color:#cccccc;
+	font-weight: bold;
+}
