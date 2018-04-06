@@ -33,10 +33,15 @@
 							<div>
 								<div className="jumbotron">
 									<h1>{this.props.title}</h1> 
-										<p>{this.props.text}</p> 
+										<p>{this.props.text}</p>
+										<p><a onClick = {this.onClick.bind(this, "Hello World")}className = "btn" href = "#"
+										role = "button">Learn more</a></p>
 								</div>
 							</div>
 						)
+					},
+					onClick: function(hw){
+						alert(hw);
 					}
 				});
 				ReactDOM.render(
