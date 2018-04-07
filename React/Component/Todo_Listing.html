@@ -40,7 +40,7 @@
 						return(
 							<div>
 								<TodoForm onTodoAdd ={this.handleTodo}/>
-								<TodoList todos = {this.state.todos}/>
+								<TodoList todos = {this.state.todos} deleteTodo ={this.handleTodoDelete}/>
 							</div>
 						)
 					},
@@ -52,6 +52,15 @@
 						this.setState({
 							todos: this.state.todos.concat(newTodo)
 						});
+					},
+					handleTodoDelete: function(todo){
+						let todos = this.state.todos;
+						for(let i = 0; i<todos.length;i++){
+							if(todos[i].id==todo.id){
+								todos.splice(i,1);
+							}
+						}
+						this.setState({todos:todos});
 					}
 				});
 				let TodoForm = React.createClass({
@@ -85,12 +94,17 @@
 							<ul className ="list-group">
 								{
 								this.props.todos.map(todo => {
-										return <li className = "list-group-item" todo = {todo} key = {todo.id}>{todo.text}</li>
+										return <li className = "list-group-item" todo = {todo}
+										key = {todo.id}>{todo.text} <a onClick = {this.onDelete.bind(this, todo)}
+										className ="delete" href ="#">x</a></li>
 									})
 								}
 							</ul>
 						)
 					},
+					onDelete(todo){
+						this.props.deleteTodo(todo);
+					}
 				});
 				ReactDOM.render(
 					<App/>,
