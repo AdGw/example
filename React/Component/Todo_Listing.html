@@ -20,6 +20,7 @@
 					getInitialState: function(){
 						return{
 							text: '',
+							isEdit: 0,
 							todos: [
 								{
 									id: 1,
@@ -39,8 +40,13 @@
 					render: function(){
 						return(
 							<div>
-								<TodoForm onTodoAdd ={this.handleTodo}/>
-								<TodoList todos = {this.state.todos} deleteTodo ={this.handleTodoDelete}/>
+								<TodoForm {...this.state}
+									changeText ={this.handleChangeText}
+									onTodoAddUpdate={this.handleTodoUpdate}
+									onTodoAdd ={this.handleTodo}/>
+								<TodoList {...this.state}
+									editTodo ={this.handleTodoEdit}
+									deleteTodo ={this.handleTodoDelete}/>
 							</div>
 						)
 					},
@@ -61,6 +67,24 @@
 							}
 						}
 						this.setState({todos:todos});
+					},
+					handleTodoEdit: function(todo){
+						this.setState({text:todo.text,
+						isEdit: todo.id		
+						});			
+					},
+					handleChangeText: function(text){
+						this.setState({text: text});
+					},
+					handleTodoUpdate: function(todo){
+						let todos = this.state.todos;
+						for(let i = 0; i<todos.length;i++){
+							if(todos[i].id==todo.id){
+								todos.splice(i,1);
+							}
+						}
+						todos.push(todo);
+						this.setState({todos:todos});
 					}
 				});
 				let TodoForm = React.createClass({
@@ -70,12 +94,16 @@
 								<form onSubmit = {this.onSubmit}>
 									<div className = "form-group">
 										<label>Todo text </label>
-										<input type = "text" ref = "text" onChange = {this.onChange}
+										<input type = "text" ref = "text" value ={this.props.text}
+										onChange = {this.onChange}
 										className = "form-control"/>
 									</div>
 								</form>
 							</ul>
 						)
+					},
+					onChange: function(ev){
+						this.props.changeText(ev.target.value);
 					},
 					onSubmit: function(ev){
 						ev.preventDefault();
@@ -84,7 +112,15 @@
 							alert("Please input a new task to do");
 							return;
 						}
-						this.props.onTodoAdd(text);
+						if(this.props.isEdit){
+							let updatedTodo ={
+								id: this.props.isEdit,
+								text: text
+							}
+							this.props.onTodoAddUpdate(updatedTodo);
+						}else{
+							this.props.onTodoAdd(text);
+						}
 						this.refs.text.value ='';
 					}
 				});
@@ -95,15 +131,21 @@
 								{
 								this.props.todos.map(todo => {
 										return <li className = "list-group-item" todo = {todo}
-										key = {todo.id}>{todo.text} <a onClick = {this.onDelete.bind(this, todo)}
-										className ="delete" href ="#">x</a></li>
+										key = {todo.id}>
+										<span onClick = {this.editTodo.bind(this,todo)}>
+										{todo.text}</span>
+										<a onClick = {this.onDelete.bind(this, todo)}
+										className ="delete" href ="#"> x </a></li>
 									})
 								}
 							</ul>
 						)
 					},
-					onDelete(todo){
+					onDelete: function(todo){
 						this.props.deleteTodo(todo);
+					},
+					editTodo: function(todo){
+						this.props.editTodo(todo);
 					}
 				});
 				ReactDOM.render(
