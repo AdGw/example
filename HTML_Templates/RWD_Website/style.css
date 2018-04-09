@@ -5,10 +5,27 @@ body {
 	background-color: #f4f4f4; 
 }
 
+.dark{
+	padding:15px;
+	background:#35424a;
+	color: #ffffff;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
 .container{
 	width: 80%;
 	margin: auto;
 	overflow: hidden;
+}
+
+.btn{
+	height: 40px;
+	background: #ff0000;
+	border: 0;
+	padding-left: 15px;
+	padding-right: 15px;
+	color: #ffffff;
 }
 
 header{
@@ -51,4 +68,121 @@ header .current a{
 header a:hover{
 	color:#cccccc;
 	font-weight: bold;
+}
+
+#showcase{
+	min-height: 400px;
+	background: url("images/showcase.png");
+	color: #ffffff;
+	text-align: center;
+}
+
+#showcase h1{
+	font-size: 50px;
+	margin-bottom: 220px;
+}
+
+#showcase p{
+	color: #ffffff;
+	font-weight: bold;
+}
+
+#newsletter{
+	padding: 15px;
+	color: #ffffff;
+	background: #35424a;
+}
+
+#newsletter h1{
+	float: left;
+}
+
+#newsletter form{
+	float: right;
+	margin-top: 15px;
+}
+
+#newsletter input[type="email"]{
+	padding: 4px;
+	height: 25px;
+	width: 250px;
+}
+
+#box{
+	margin-top: 20px;
+}
+
+#box .box-in img{
+	width: 100px;
+}
+
+.box-in{
+	float: left;
+	width: 30%;
+	padding: 10px;
+	text-align: center;
+}
+
+aside#sidebar{
+	float:right;
+	width:30%;
+	margin-top: 15px;
+}
+
+aside#sidebar .quote input,
+aside#sidebar .quote textarea{
+	width: 90%;
+	padding: 5px;
+}
+
+article#main-col{
+	float: left;
+	width: 60%;
+}
+
+ul#services li{
+	list-style: none;
+	padding:20px;
+	border: #cccccc sold 1px;
+	margin-bottom: 5px;
+	background: #e6e6e6;
+}
+
+footer{
+	padding: 20px;
+	margin-top: 20px;
+	color: #ffffff;
+	background-color: #ff0000;
+	text-align: center;
+}
+
+@media(max-width: 768px){
+	header #brand,
+	header nav,
+	header nav li,
+	#newsletter h1,
+	#newsletter form,
+	#box .box-in,
+	article#main-col,
+	aside#sidebar{
+		float: none;
+		text-align: center;
+		width: 100%;
+	}
+	header{
+		padding-bottom: 20px;
+	}
+	#showcase h1{
+		margin-top: 40px;
+	}
+	#newsletter button, .quote button{
+		display: block;
+		width: 100%;
+	}
+	#newsletter form input[type="email"],
+	.quote input, .quote textarea
+	{
+		width: 100%;
+		margin-bottom: 5px;
+	}
 }
