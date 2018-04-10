@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ractive Template</title>
+	</head>
+	<body>
+		<div id="app">
+			App works
+		</div>
+		<script id = "template" type="text/ractive">
+			<h1 style ="color: {{color}}">{{greeting}}</h1>
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+		<script>
+			let ractive = new Ractive({
+				el: '#app',
+				template: '#template',
+				data:{
+					greeting: "Hello",
+					color: '#ff0000'
+					}
+				});
+		console.log(ractive.data);
+		</script>
+	</body>
+</html>
