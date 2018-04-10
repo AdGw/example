@@ -7,9 +7,6 @@
 	<body>
 		<div class="container">
 		<div id="app">
-		</div>
-			App works
-		</div>
 		<script id = "template" type="text/ractive">
 			<h1 style ="color: {{color}}">{{greeting}}</h1>
 			{{#if showAddress}}
@@ -36,6 +33,9 @@
 				</li>
 			{{/friends}}
 			</ul>
+			<jobs/>
+		</script>
+		<script id="jobs" type="text/ractive">
 			<h3>Work History</h3>
 			<table class = "table">
 				<tr>
@@ -51,19 +51,68 @@
 				</tr>
 				{{/each}}			
 			</table>
-			<button on-click="addJob()">Add Job</button>
+			<h3>Add Job</h3>
+			<form on-submit="addJob">
+				<div class="form-group">
+					<input class = "form-control" type="text" placeholder="Add Company" value="{{JobCompany}}">
+				</div>
+				<div class="form-group">
+					<input class = "form-control" type="text" placeholder="Add Years" value="{{JobYear}}">
+				</div>
+				<div class="form-group">
+					<input class = "btn btn-default" type="submit" value="Submit">
+				</div>	
+			</form>
 		</script>
 		<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+
 		<script>
+			let Jobs = Ractive.extend({
+				template: '#jobs',
+				isolated: true,
+				oninit: function(){
+					this.on('addJob', function(){
+						let newJob ={
+							company: this.get('JobCompany'),
+							years: this.get('JobYear')
+						}
+						this.push('jobs', newJob);
+						this.get('jobCompany', '');
+						this.get('JobYear', '');
+					return false;
+					});
+				},
+				addJob:function(){
+				
+				},
+				data:{
+					jobs:[{
+						company: 'Tesla',
+						years: 4
+					},{
+						company: 'Google',
+						years: 5
+					},{
+						company: 'Apple',
+						years: 6
+					}],
+					jobTitle: '',
+					jobCompany:'',
+					JobYear:''
+				}
+			});
 			let ractive = new Ractive({
 				el: '#app',
 				template: '#template',
+				components: {
+					jobs:Jobs
+				},
 				data:{
 					greeting: "Hello",
 					color: '#ff0000',
 					address:{
-						street: "Struga",
-						city: "Szczecin"
+						street: "Wall Street",
+						city: "NYC"
 						},
 						friends: [{
 							name: 'John',
@@ -72,29 +121,14 @@
 							name: 'Tom',
 							age:40
 						}],
-						jobs:[{
-							company: 'Tesla',
-							years: 4
-						},{
-							company: 'Google',
-							years: 5
-						},{
-							company: 'Apple',
-							years: 6
-						}],
-						showAddress: false
-					}
-				});
+						showAddress:false
+				}
+			});
 		console.log(ractive.get('address.city'));
 		ractive.set('color','green');
-		ractive.push('jobs', {
-			company: 'Test Company',
-			years: '2'
-		});
 		ractive.on('showAddress', function(){
 			ractive.toggle('showAddress');
 		});
-		// ractive.splice('jobs', 1, 1)
 		</script>
 	</body>
 </html>
