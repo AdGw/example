@@ -2,13 +2,56 @@
 <html>
 	<head>
 		<title>Ractive Template</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 	</head>
 	<body>
+		<div class="container">
 		<div id="app">
+		</div>
 			App works
 		</div>
 		<script id = "template" type="text/ractive">
 			<h1 style ="color: {{color}}">{{greeting}}</h1>
+			{{#if showAddress}}
+			<ul> {{#address}}
+				<li>{{street}}</li>
+				<li>{{city}}</li>
+				{{/address}}
+			</ul>
+			{{else}}
+			<p>Address Hidden</p>
+			{{/if}}
+			<button on-click="showAddress">
+			{{#if showAddress}}
+				Hide Address
+				{{else}}
+				Show Address
+				{{/if}}
+			</button>
+			<h3>Friends</h3>
+			<ul>
+			{{#friends}}
+				<li>
+					{{name}} - {{age}}
+				</li>
+			{{/friends}}
+			</ul>
+			<h3>Work History</h3>
+			<table class = "table">
+				<tr>
+					<th>ID</th>
+					<th>Company</th>
+					<th>Years</th>
+				</tr>
+				{{#each jobs:i}}
+				<tr>
+					<td>{{i+1}}</td>
+					<td>{{company}}</td>
+					<td>{{years}}</td>
+				</tr>
+				{{/each}}			
+			</table>
+			<button on-click="addJob()">Add Job</button>
 		</script>
 		<script src="https://cdn.jsdelivr.net/npm/ractive"></script>
 		<script>
@@ -17,10 +60,41 @@
 				template: '#template',
 				data:{
 					greeting: "Hello",
-					color: '#ff0000'
+					color: '#ff0000',
+					address:{
+						street: "Struga",
+						city: "Szczecin"
+						},
+						friends: [{
+							name: 'John',
+							age: 35
+						},{
+							name: 'Tom',
+							age:40
+						}],
+						jobs:[{
+							company: 'Tesla',
+							years: 4
+						},{
+							company: 'Google',
+							years: 5
+						},{
+							company: 'Apple',
+							years: 6
+						}],
+						showAddress: false
 					}
 				});
-		console.log(ractive.data);
+		console.log(ractive.get('address.city'));
+		ractive.set('color','green');
+		ractive.push('jobs', {
+			company: 'Test Company',
+			years: '2'
+		});
+		ractive.on('showAddress', function(){
+			ractive.toggle('showAddress');
+		});
+		// ractive.splice('jobs', 1, 1)
 		</script>
 	</body>
 </html>
