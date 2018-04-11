@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Project</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="nav navbar-nav navbar-left">
+            <li class="nav-link" [routerLink]="['/']">Home <span class="sr-only">(current)</span></li>
+            <li *ngIf = "(af.auth | async)"><a class="nav-link" [routerLink]="['/listings']">Listings</a></li>
+            <li *ngIf = "(af.auth | async)"><a class="nav-link" [routerLink]="['/add-listing']">Add Listings</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li *ngIf = "!(af.auth | async)"><a (click) = "login()" class="nav-link">Login</a></li>
+            <li *ngIf = "(af.auth | async)"><a (click) = "logout()" class="nav-link">Logout</a></li>
+          </ul>
+      </div>
+</nav>
