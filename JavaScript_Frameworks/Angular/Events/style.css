@@ -1,0 +1,17 @@
+[ng\:cloak], [ng:cloak], .ng-cloak {
+	display: none;
+}
+
+.bluetext{
+	color: blue;
+}
+.boldText{
+	font-weight: bold;
+}
+.stripedblue{
+	color:#007fff;
+	background-color: #dbe9f4;
+}
+.stripedbeige{
+	color: #cc0000;
+	background-color: #f5f5dc;
