@@ -1,0 +1,37 @@
+<!doctype html>
+<html ng-app = 'app' ng-init = "person = {
+firstName: 'Jane', lastName: 'Doe'};
+capitals = [{city: 'New York', state: 'NY'}]">
+  <head>
+    <title>Scope</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  </head>
+  <body>
+    <div ng-controller = "ctrl1">
+      <span>Values: </span><br>
+      <input type="text" ng-model = "first"/>
+      <input type="text" ng-model = "second"/>
+      <button ng-click = "updateValueAdd()">Sum</button>
+      <p>{{calculationAdd}}</p>
+       <input type="text" ng-model = "first"/>
+      <input type="text" ng-model = "second"/>
+      <button ng-click = "updateValueMul()">Multiply</button>
+      <p>{{calculationMul}}</p>
+       <input type="text" ng-model = "first"/>
+      <input type="text" ng-model = "second"/>
+      <button ng-click = "updateValueDiv()">Divided</button>
+      <p>{{calculationDiv}}</p>
+      <input type="text" ng-model = "first"/>
+      <input type="text" ng-model = "second"/>
+      <button ng-click = "updateValueSub()">Substract</button>
+      <p>{{calculationSub}}</p>
+      <ul>
+        <li>{{person.firstName + " " + person.lastName}}</li>
+        <li ng-repeat = "capital in capitals">
+          {{'City: ' + capital.city + ', State: ' + capital.state}}
+        </li>  
+      </ul>
+    </div>
+    <script src = "main.js"></script>
+  </body>
+</html>
