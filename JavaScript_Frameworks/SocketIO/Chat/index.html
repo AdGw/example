@@ -15,6 +15,18 @@
   </head>
   <body>
     <div class = "container">
+      <div id="userFormArea" class = "row ">
+        <div class="col-md-12">
+          <form id = "userForm">
+            <div class="form-group">
+              <label>Enter Username</label>
+              <input class = "form-control" id = "username"/>
+            </br>
+            <input type="submit" class = "btn btn-primary" value = "Login"/>
+            </div>
+          </form>
+        </div>
+      </div>
       <div id = "messageArea" class="row">
         <div class="col-md-4">
           <div class="well">
@@ -29,7 +41,7 @@
                 <label>Enter Message</label>
                 <textarea class = "form-control" id = "message"></textarea>
               </br>
-              <input type="submit" class = "btn btn-primary" value = "send message"/>
+              <input type="submit" class = "btn btn-primary" value = "Send Message"/>
               </div>
             </form>
           </div>
@@ -42,6 +54,12 @@
         let $messageForm = $('#messageForm');
         let $message = $('#message');
         let $chat = $('#chat');
+        let $userForm = $('#userForm');
+        let $userFormArea = $('#userFormArea');
+        let $messageArea = $('#messageArea');
+        let $users = $('#users');
+        let $username = $('#username');
+
 
         $messageForm.submit(function(ev){
           ev.preventDefault();
@@ -49,8 +67,25 @@
           $message.val('');
         });
         socket.on('new message', function(data){
-          $chat.append('<div class="well">'+data.msg+'</div>');
+          $chat.append('<div class="well"><strong>'+data.user+'</strong>: '+data.msg+'</div>');
         });
+        $userForm.submit(function(ev){
+          ev.preventDefault();
+          socket.emit('new user', $username.val(),function(data){
+            if(data){
+              $userFormArea.hide();
+              $messageArea.show();
+            }
+          });
+          $username.val('');
+        });
+        socket.on('get users', function(data){
+          let html = ""
+          for(i=0;i<data.length;i++){
+            html += '<li class = "list-group-item">'+data[i]+'</li>';
+          }
+          $users.html(html);
+        })
       });
     </script>
   </body>
