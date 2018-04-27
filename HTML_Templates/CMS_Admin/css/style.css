@@ -71,7 +71,7 @@ body{
 .main-color-bg{
   background-color: #e74d16 !important;
   border-color: #d41010 !important;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 /*Header*/
 
@@ -84,6 +84,24 @@ body{
 
 #header .create{
 	padding-top:20px;
+}
+
+.breadcrumb{
+	background: #cccccc;
+	color:#333333;
+}
+
+.breadcrumb a{
+	color:#333333;
+}
+
+.progress-bar{
+	background: #000000;
+	color: #ffffff;
+}
+
+.dash-box{
+	text-align: center;
 }
 
 @media (max-width: 767px) {
