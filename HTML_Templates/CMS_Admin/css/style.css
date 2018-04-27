@@ -96,12 +96,20 @@ body{
 }
 
 .progress-bar{
-	background: #000000;
+	background: #333333;
 	color: #ffffff;
 }
 
 .dash-box{
 	text-align: center;
+}
+
+#footer{
+	background: #333333;
+	color: #ffffff;
+	text-align: center;
+	padding: 20px;
+	margin-top: 20px;
 }
 
 @media (max-width: 767px) {
