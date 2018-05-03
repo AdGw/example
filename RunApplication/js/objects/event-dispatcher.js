@@ -5,20 +5,20 @@
 	// Events are stored in eventsMap.
 	// Firstly should be used trigger in object, and then on function outside
 	// the object.
-	function eventDispatcherCreate() {
-		var eventsMap = {};
+	const eventDispatcherCreate=()=> {
+		let eventsMap = {};
 
 		return {
-			on: function eventDispatcherOn(event, cb) {
-				var events = eventsMap[event];
+			on: eventDispatcherOn=(event, cb)=> {
+				let events = eventsMap[event];
 				if (!events) {
 					events = $.Callbacks();
 					eventsMap[event] = events;
 				}
 				events.add(cb);
 			},
-			trigger: function eventDispatcherTrigger(event, data) {
-				var events = eventsMap[event];
+			trigger: eventDispatcherTrigger=(event, data)=> {
+				let events = eventsMap[event];
 				if (!events) {
 					return;
 				}

@@ -2,20 +2,20 @@
 // Can use this script when page loaded all scripts (document ready).
 (function($) {
 
-  // map function is a closure (object) private variables and public methods.
+  // map function is a closure (object) private letiables and public methods.
   // It is create and manage new map.
   // This function returns object with methods which are using public methods.
   // Params:
   // 	$map 						[element] - html element which should be a new map.
   // 	tryGeolocation  [boolean] - if true, try get geolocation.
   // 														- if false, ignore geolocation.
-  function map($map, tryGeolocation) {
-    var output = {};
-    var userPosition = {};
+  const map=($map, tryGeolocation)=> {
+    let output = {};
+    let userPosition = {};
 
     // initMap initialises map with default options (location set to Szczecin).
-    function initMap() {
-      var gmap = new google.maps.Map(
+    const initMap=()=> {
+      let gmap = new google.maps.Map(
         $map, {
           center: {
             lat: 52.229,
@@ -28,11 +28,11 @@
     }
 
     // Create new map with default options.
-    var gmap = initMap();
+    let gmap = initMap();
 
     // Add handling map information (legends, buttons, etc.) for newly created
     // map.
-    var infoWindow = new google.maps.InfoWindow({
+    let infoWindow = new google.maps.InfoWindow({
       map: gmap
     });
 
@@ -41,7 +41,7 @@
     // Params:
     // 	browserHasGeolocation [boolean] -
     // 	infoWindow
-    function handleGeoLocationError(browserHasGeolocation, infoWindow, pos) {
+    const handleGeoLocationError=(browserHasGeolocation, infoWindow, pos)=> {
       infoWindow.setPosition(pos);
       infoWindow.setContent(browserHasGeolocation ?
         'Error: The Geolocation service failed.' :
@@ -55,7 +55,7 @@
     //		  lat: string,    - latidute
     //		  lng: string 		- longitude
     // 		}
-    function setUserPosition(position) {
+    const setUserPosition=position=> {
       infoWindow.setPosition(position);
       infoWindow.setContent('Twoja lokalizacja.');
       gmap.setCenter(position);
@@ -63,17 +63,16 @@
 
     // askForGeolocation asks user if he wants to use geolocation to get his
     // position which can be used as marker. Also sets position.
-    function askForGeolocation() {
+    const askForGeolocation=()=> {
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
+        navigator.geolocation.getCurrentPosition((position)=> {
+            let pos = {
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
             userPosition = pos;
             setUserPosition(pos);
-          },
-          function() {
+          },()=> {
             handleGeoLocationError(true, infoWindow, gmap.getCenter());
           });
       } else {
@@ -90,25 +89,25 @@
 
     return $.extend(output, {
       // getElem returns $map element.
-      getElem: function() {
+      getElem: ()=> {
         return $map;
       },
       // getMap returns map object.
-      getMap: function() {
+      getMap: ()=> {
         return gmap;
       },
       // getUserPosition gets actually user position.
-      getUserPosition: function() {
+      getUserPosition: ()=> {
         return userPosition;
       },
-      // setUserPosition sets new user position on map and update variable
+      // setUserPosition sets new user position on map and update letiable
       // (it uses private method).
       // params:
       // 		position [object]: {
       //		  lat: string,    - latidute
       //		  lng: string 		- longitude
       // 		}
-      setUserPostion: function(position) {
+      setUserPostion: position=> {
         setUserPosition(position);
         userPosition = position;
       }

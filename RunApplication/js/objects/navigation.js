@@ -1,16 +1,14 @@
 (function($) {
 
-  var EARTH_RADIUS = 6371000;
-  var DEG_TO_RAD = Math.PI / 180.0;
-  var THREE_PI = Math.PI * 3;
-  var TWO_PI = Math.PI * 2;
+  let EARTH_RADIUS = 6371000;
+  let DEG_TO_RAD = Math.PI / 180.0;
+  let THREE_PI = Math.PI * 3;
+  let TWO_PI = Math.PI * 2;
 
-  function isFloat(n) {
+  const isFloat=n=>!isNaN(parseFloat(n)) && isFinite(n);
+  
 
-    return !isNaN(parseFloat(n)) && isFinite(n);
-  }
-
-  function recursiveConvert(input, callback) {
+  const recursiveConvert=(input, callback)=> {
     if (input instanceof Array) {
       return input.map(function(el) {
         return recursiveConvert(el, callback);
@@ -18,7 +16,7 @@
     }
     if (input instanceof Object) {
       input = JSON.parse(JSON.stringify(input));
-      for (var key in input) {
+      for (let key in input) {
         if (input.hasOwnProperty(key)) {
           input[key] = recursiveConvert(input[key], callback);
         }
@@ -30,83 +28,75 @@
     }
   }
 
-  function toRadians(input) {
-    return recursiveConvert(input, function(val) {
-      return val * DEG_TO_RAD;
-    });
-  }
+  const toRadians=input=> recursiveConvert(input, (val=> val * DEG_TO_RAD));
 
-  function toDegrees(input) {
-    return recursiveConvert(input, function(val) {
-      return val / DEG_TO_RAD;
-    });
-  }
+  const toDegrees=input=> recursiveConvert(input, (val=> val / DEG_TO_RAD));
 
-  function pointAtDistance(inputCoords, distance) {
-    var result = {};
-    var coords = toRadians(inputCoords);
-    var sinLat = Math.sin(coords.latitude);
-    var cosLat = Math.cos(coords.latitude);
+  const pointAtDistance=(inputCoords, distance)=> {
+    let result = {};
+    let coords = toRadians(inputCoords);
+    let sinLat = Math.sin(coords.latitude);
+    let cosLat = Math.cos(coords.latitude);
 
-    var bearing = Math.random() * TWO_PI;
-    var theta = distance / EARTH_RADIUS;
-    var sinBearing = Math.sin(bearing);
-    var cosBearing = Math.cos(bearing);
-    var sinTheta = Math.sin(theta);
-    var cosTheta = Math.cos(theta);
+    let bearing = Math.random() * TWO_PI;
+    let theta = distance / EARTH_RADIUS;
+    let sinBearing = Math.sin(bearing);
+    let cosBearing = Math.cos(bearing);
+    let sinTheta = Math.sin(theta);
+    let cosTheta = Math.cos(theta);
 
     result.latitude = Math.asin(sinLat * cosTheta + cosLat * sinTheta *
       cosBearing);
     result.longitude = coords.longitude +
       Math.atan2(sinBearing * sinTheta * cosLat, cosTheta - sinLat *
-        Math.sin(result.latitude));
+      Math.sin(result.latitude));
     result.longitude = ((result.longitude + THREE_PI) % TWO_PI) - Math.PI;
 
     return toDegrees(result);
   }
 
   // straight line distance counting.
-  function straightDist(v1, v2) {
-    var R = EARTH_RADIUS; // Radius of the earth in km
-    var dLat = toRadians(v2.latitude - v1.latitude); // deg2rad below
-    var dLon = toRadians(v2.longitude - v1.longitude);
-    var a =
+  const straightDist=(v1, v2)=> {
+    let R = EARTH_RADIUS; // Radius of the earth in km
+    let dLat = toRadians(v2.latitude - v1.latitude); // deg2rad below
+    let dLon = toRadians(v2.longitude - v1.longitude);
+    let a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.cos(toRadians(v1.latitude)) * Math.cos(toRadians(v2.latitude)) *
       Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var d = R * c; // Distance in km
+    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    let d = R * c; // Distance in km
     return d;
   }
 
-  // var v1 = {
+  // let v1 = {
   //   latitude: 53.4285438,
   //   longitude: 14.552811600000041
   // };
 
-  // var v2 = {
+  // let v2 = {
   //   latitude: 53.465305401854586,
   //   longitude: 14.646180620802864
   // };
-  function midPoint(v1, v2) {
+  const midPoint=(v1, v2)=> {
     return {
       latitude: (v1.latitude + v2.latitude) / 2,
       longitude: (v1.longitude + v2.longitude) / 2
     };
   }
 
-  function pointInCircle(coord, distance) {
-    var rnd = Math.random();
+  const pointInCircle=(coord, distance)=> {
+    let rnd = Math.random();
     // use square root of random number to avoid high density at the center
-    var randomDist = Math.sqrt(rnd) * distance;
+    let randomDist = Math.sqrt(rnd) * distance;
     return pointAtDistance(coord, randomDist);
   }
 
   // // calculate middle point in straight line between v1 and v2.
-  // var mid = midPoint(v1, v2);
+  // let mid = midPoint(v1, v2);
   // // calculate distance between points in straight line
   // // (mid point and first point)
-  // var distance = straightDist(v1, mid);
+  // let distance = straightDist(v1, mid);
   // console.log(pointInCircle(mid, distance));
 
   window.inz = $.extend(true, window.inz, {

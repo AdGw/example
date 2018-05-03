@@ -2,27 +2,27 @@
 // Can use this script when page loaded all scripts (document ready).
 (function($) {
 
-  // elevator function is a closure (object) private variables and public
+  // elevator function is a closure (object) private letiables and public
   // methods. It is create and manage new elevator for map.
   // This function returns object with methods which are using public methods.
   // Params:
   // 	$elevator 			[element] - html element which should be a new elevator.
   // 	map  					  [object]  - google map object.
-  function elevator($elevator, map) {
+  const elevator=($elevator, map)=> {
 
-    var gPath = [];
-    var gRoute = {};
+    let gPath = [];
+    let gRoute = {};
 
-    var output = inz.eventDispatcher.create();
-    var trigger = output.trigger;
+    let output = inz.eventDispatcher.create();
+    let trigger = output.trigger;
     delete output.trigger;
 
-    var difficultyLvl = "";
+    let difficultyLvl = "";
     // Create an ElevationService.
-    var elevator = new google.maps.ElevationService();
+    let elevator = new google.maps.ElevationService();
 
     // showPolyline shows new polyline on elevation path.
-    function showPolyline() {
+    const showPolyline=()=> {
       // Display a polyline of the elevation path.
       new google.maps.Polyline({
         path: gPath.routes[0].overview_path,
@@ -34,13 +34,13 @@
     }
 
     function countAscents(elev) {
-      var ascents = 0;
-      var najwiekszy = 0;
-      var startAscIndex = 0;
-      var isAsc = false;
-      for (var j = 1; j < elev.length; j++) {
-        var e = elev[j].elevation;
-        var ep = elev[j - 1].elevation;
+      let ascents = 0;
+      let biggest = 0;
+      let startAscIndex = 0;
+      let isAsc = false;
+      for (let j = 1; j < elev.length; j++) {
+        let e = elev[j].elevation;
+        let ep = elev[j - 1].elevation;
 
         if (e - ep <= 0) {
           isAsc = false;
@@ -48,23 +48,23 @@
           continue;
         }
 
-        var v1 = {
+        let v1 = {
           latitude: elev[j].location.lat(),
           longitude: elev[j].location.lng()
         };
 
-        var v2 = {
+        let v2 = {
           latitude: elev[startAscIndex].location.lat(),
           longitude: elev[startAscIndex].location.lng()
         };
 
-        var dist = inz.nav.straightDist(v1, v2);
+        let dist = inz.nav.straightDist(v1, v2);
         if (dist >= 10 && isAsc === false) {
-          var diffH = elev[j].elevation - elev[startAscIndex].elevation;
+          let diffH = elev[j].elevation - elev[startAscIndex].elevation;
 
-          var angle = inz.nav.toDegrees(Math.atan(diffH / dist));
-          if (angle > najwiekszy) {
-            najwiekszy = angle;
+          let angle = inz.nav.toDegrees(Math.atan(diffH / dist));
+          if (angle > biggest) {
+            biggest = angle;
           }
           if (angle > 2.8) {
             isAsc = true;
@@ -75,8 +75,8 @@
       return ascents;
     }
 
-    function drawElevation(data) {
-      var chart = new google.visualization.ColumnChart($elevator);
+    const drawElevation=data=> {
+      let chart = new google.visualization.ColumnChart($elevator);
       // Draw elevation chart.
       chart.draw(data, {
         height: 150,
@@ -92,7 +92,7 @@
       });
     }
 
-    function prepareElevation(elevations, status) {
+    const prepareElevation=(elevations, status)=> {
       if (status !== 'OK') {
         // Show the error code inside the chartDiv.
         window.alert(
@@ -101,7 +101,7 @@
         return;
       }
 
-      var ascents = countAscents(elevations);
+      let ascents = countAscents(elevations);
       console.log("ascents: " + ascents);
 
       if ((difficultyLvl === "easy" && ascents >= 3) ||
@@ -116,12 +116,12 @@
       // Because the samples are equidistant, the 'Sample'
       // column here does double duty as distance along the
       // X axis.
-      var data = new google.visualization.DataTable();
+      let data = new google.visualization.DataTable();
 
       data.addColumn('string', 'Sample');
       data.addColumn('number', 'Wysokosc');
 
-      for (var i = 0; i < elevations.length; i++) {
+      for (let i = 0; i < elevations.length; i++) {
         data.addRow(['', elevations[i].elevation]);
       }
 
@@ -131,7 +131,7 @@
 
     // prepareAndShowElevation prepare and show elevation from google path
     // object.
-    function prepareAndShowElevation(gPath) {
+    const prepareAndShowElevation=gPath=> {
       // Create a PathElevationRequest object using this array.
       // Ask for 512 samples along that path.
       // Initiate the path request.
@@ -143,17 +143,17 @@
 
     return $.extend(output, {
       // getElems gets $elevator element and returns it to user.
-      getElem: function() {
+      getElem: ()=> {
         return $elevator;
       },
       // setPath sets path on elevator (show heights) and shows it.
-      setPath: function(p, route, difficulty) {
+      setPath: ((p, route, difficulty)=> {
         difficultyLvl = difficulty;
         gPath = p;
         gRoute = route;
         showPolyline(p);
         prepareAndShowElevation(p);
-      }
+      })
     });
 
   }

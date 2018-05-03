@@ -1,26 +1,26 @@
 /* global google, inz */
-function initMapPage($mapPage) {
+const initMapPage=$mapPage=> {
   // Prepare visualisation chart.
   google.load('visualization', '1', {
     packages: ['columnchart']
   });
 
   // Submit new address button.
-  var $submitDistBtn = $mapPage.find('#submit');
+  let $submitDistBtn = $mapPage.find('#submit');
   // New address input in form.
-  var $address = $mapPage.find('#address');
-  // var $submitAddressBtn = $mapPage.find('#submitAddress');
-  var $distance = $mapPage.find('#distance');
-  // var $submitDistanceBtn = $mapPage.find('#submitDistance');
-  var $calculateRoadBtn = $mapPage.find('.calculate-road');
-  var $walkingMode = $mapPage.find('#walkingMode');
-  var $bicyclingMode = $mapPage.find('#bicyclingMode');
-  var $distanceRange = $mapPage.find('.rangeslider');
+  let $address = $mapPage.find('#address');
+  // let $submitAddressBtn = $mapPage.find('#submitAddress');
+  let $distance = $mapPage.find('#distance');
+  // let $submitDistanceBtn = $mapPage.find('#submitDistance');
+  let $calculateRoadBtn = $mapPage.find('.calculate-road');
+  let $walkingMode = $mapPage.find('#walkingMode');
+  let $bicyclingMode = $mapPage.find('#bicyclingMode');
+  let $distanceRange = $mapPage.find('.rangeslider');
 
-  var $easyDifficult = $mapPage.find('input[value="easy"]');
-  var $hardDifficult = $mapPage.find('input[value="hard"]');
+  let $easyDifficult = $mapPage.find('input[value="easy"]');
+  let $hardDifficult = $mapPage.find('input[value="hard"]');
 
-  var difficulty = "";
+  let difficulty = "";
 
   // Range slider.
   $distanceRange.rangeslider({
@@ -38,33 +38,33 @@ function initMapPage($mapPage) {
   // find('#map')[0] because we select first element.
   // Find is searching for all elements with id = map, but
   // we have always one id per page.
-  var $map = $mapPage.find('#map')[0];
-  var $elevationChart = $mapPage.find('#elevation_chart')[0];
+  let $map = $mapPage.find('#map')[0];
+  let $elevationChart = $mapPage.find('#elevation_chart')[0];
 
-  var mapObj = inz.map.create($map, true);
+  let mapObj = inz.map.create($map, true);
   // Get google map object from mapObj closure.
-  var gmap = mapObj.getMap();
+  let gmap = mapObj.getMap();
 
-  var routesObj = inz.routes.create(gmap);
-  var elevatorObj = inz.elevator.create($elevationChart, gmap);
+  let routesObj = inz.routes.create(gmap);
+  let elevatorObj = inz.elevator.create($elevationChart, gmap);
 
-  var distance = 0;
+  let distance = 0;
 
   // route should be always managed from outside of object.
-  var route = {};
+  let route = {};
 
   // Prepare options to displayRoute.
-  var options = {
+  let options = {
     travelMode: "WALKING",
     avoidTolls: true
   };
 
-  var directionsObjs = routesObj.getDirectionObj();
+  let directionsObjs = routesObj.getDirectionObj();
 
   routesObj.setOptions(options, directionsObjs);
 
   // Make possibility to use autocomplete on our input.
-  var originAutoComplete = new google.maps.places.Autocomplete($address[0]);
+  let originAutoComplete = new google.maps.places.Autocomplete($address[0]);
 
   // When autocomplete is selected, change location.
   originAutoComplete.addListener('place_changed', function() {
@@ -73,19 +73,19 @@ function initMapPage($mapPage) {
   });
 
   // Handle routes object events.
-  routesObj.on('changed', function(data) {
+  routesObj.on('changed', data=> {
     elevatorObj.setPath(data.gRoute, data.route, difficulty);
   });
 
-  elevatorObj.on('generate-new', function() {
-    var percTol = $distanceRange.val();
+  elevatorObj.on('generate-new', (()=> {
+    let percTol = $distanceRange.val();
     routesObj.addWaypoint(route.origin, distance, percTol);
-  });
-  elevatorObj.on('show-map', function(data) {
+  }));
+  elevatorObj.on('show-map', data=> {
     routesObj.showRouteWithWaypoints(data.gRoute);
   });
 
-  routesObj.on('location', function(loc) {
+  routesObj.on('location', loc=> {
     if ($.isEmptyObject(loc)) {
       return;
     }
@@ -102,7 +102,7 @@ function initMapPage($mapPage) {
     } else if ($bicyclingMode[0].checked) {
       options.travelMode = "BICYCLING";
     } else {
-      window.alert("Podaj tryb aktywnosci");
+      window.alert("Please choose an activity");
       return;
     }
 
@@ -111,20 +111,20 @@ function initMapPage($mapPage) {
     } else if ($hardDifficult[0].checked) {
       difficulty = "hard";
     } else {
-      window.alert("Podaj poziom trudnosci");
+      window.alert("Please choose a difficulty level");
       return;
     }
 
     routesObj.setOptions(options, directionsObjs);
 
-    var percTol = $distanceRange.val();
+    let percTol = $distanceRange.val();
     routesObj.addWaypoint(route.origin, distance, percTol);
   });
 
   // On submit address get new address from form and add it into
   // routes object.
   $submitDistBtn.on('click', function() {
-    var address = $address.val();
+    let address = $address.val();
     // Modify old route - change origin and destination.
     route.origin = address;
     route.destination = address;
@@ -134,7 +134,7 @@ function initMapPage($mapPage) {
   });
 
   $calculateRoadBtn.on('click', function() {
-    var address = $address.val();
+    let address = $address.val();
     distance = $distance.val();
     // Convert address to coordinates.
     routesObj.convAddrToLoc(gmap, address);
@@ -154,7 +154,7 @@ function initMapPage($mapPage) {
 
 // function() is a document ready. It is needed to load all scripts.
 (function($) {
-  var $mapPage = $('#mapPage');
+  let $mapPage = $('#mapPage');
   if ($mapPage.length === 0) {
     return;
   }
