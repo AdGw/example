@@ -4,18 +4,18 @@ let score = 0;
 const isGameOver=()=>{
 	for(let i = 0;i<4;i++){
 		for(let j = 0;j<4;j++){
-			if(grid[i][j == 0]){
-				return false;
-			}
-			if(j!== 3 && grid[i][j] === grid[i][j+1]){
+			if(grid[i][j] == 0){
 				return false;
 			}
 			if(i!== 3 && grid[i][j] === grid[i+1][j]){
 				return false;
 			}
+			if(j!== 3 && grid[i][j] === grid[i][j+1]){
+				return false;
+			}
 		}
-		return true;
 	}
+	return true;
 }
 
 const blankGrid=()=>{
@@ -182,7 +182,11 @@ const drawGrid = () =>{
 			let value = grid[i][j];
 			if(grid[i][j] !== 0){
 				textAlign(CENTER, CENTER);
-				textSize(48);
+				let s = "" + value,
+						len = s.length-1,
+						sizes = [64,64,32,16];
+
+				textSize(sizes[len]);
 				fill(0);
 				noStroke();
 				text(value, i*w+w/2,j*w+w/2)
