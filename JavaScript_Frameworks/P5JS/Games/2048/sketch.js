@@ -1,12 +1,17 @@
 let grid;
-function setup(){
-	createCanvas(800,800);
-	grid=[
+
+const blankGrid=()=>{
+return[
 		[0,0,0,0],
 		[0,0,0,0],
 		[0,0,0,0],
 		[0,0,0,0]
 	];
+}
+
+function setup(){
+	createCanvas(800,800);
+	grid=blankGrid();
 	addNumber();
 	addNumber();
 }
@@ -29,15 +34,88 @@ const addNumber=()=>{
 	grid[spot.x][spot.y] = r > 0.5 ? 2 : 4;
 }
 
-function keyPressed(){
-	console.log("x");
-	if(key == ' '){
-		for(let i = 0;i<4;i++){
-			grid[i]=slide(grid[i]);
-			combine(grid[i]);
+const compare=(a,b)=>{
+	for(let i = 0;i<4;i++){
+		for(let j = 0;j<4;j++){
+			if(a[i][j] !== b[i][j]){
+				return true;
+			}
 		}
 	}
-	addNumber();
+	return false;
+}
+
+const copyGrid=(grid)=>{
+	let ex=blankGrid();
+		for(let i = 0;i<4;i++){
+			for(let j = 0;j<4;j++){
+				ex[i][j] = grid[i][j];
+			}
+		}
+		return ex;
+}
+
+const flipGrid=grid=>{
+	for(let i = 0; i<4; i++){
+		grid[i].reverse();
+	}
+	return grid;
+}
+
+const rotateGrid=grid=>{
+	let newGrid = blankGrid()
+	for(let i = 0; i<4; i++){
+		for(let j = 0; j<4; j++){
+			newGrid[i][j] = grid[j][i];
+		}
+	}
+	return newGrid;
+}
+
+function keyPressed(){
+	let flipped = false,
+			rotated = false,
+			played = true;
+	if(keyCode ===DOWN_ARROW){
+	}else if(keyCode ===UP_ARROW){
+		grid = flipGrid(grid);
+		flipped=true;
+	}else if(keyCode ===RIGHT_ARROW){
+		grid = rotateGrid(grid);
+		rotated = true;
+	}else if(keyCode ===LEFT_ARROW){
+		grid = rotateGrid(grid);
+		grid = flipGrid(grid);
+		rotated = true;
+		flipped = true;
+	}else{
+		played = false;
+	}
+	if(played){
+		let past = copyGrid(grid);
+		for(let i = 0; i<4; i++){
+			grid[i] = operate(grid[i]);
+		}
+		let changed = compare(past,grid);
+		if(flipped){
+			grid = flipGrid(grid);
+		}
+		if(rotated){
+			grid = rotateGrid(grid);
+			grid = rotateGrid(grid);
+			grid = rotateGrid(grid);
+		}
+		if(changed){
+			addNumber();
+		}
+	}
+}
+
+function operate(row){
+	row=slide(row);
+	row=combine(row);
+	row=slide(row);
+	return row;
 }
 
 function draw(){
@@ -60,7 +138,6 @@ const combine=row=>{
 		if(a===b){
 			row[i] = a+b;
 			row[i-1] = 0;
-			break;
 		}
 	}
 	return row;
@@ -74,6 +151,7 @@ const drawGrid = () =>{
 			strokeWeight(2);
 			stroke(0)
 			rect(w*i,w*j,w,w);
+
 			let value = grid[i][j];
 			if(grid[i][j] !== 0){
 				textAlign(CENTER, CENTER);
