@@ -1,4 +1,22 @@
 let grid;
+let score = 0;
+
+const isGameOver=()=>{
+	for(let i = 0;i<4;i++){
+		for(let j = 0;j<4;j++){
+			if(grid[i][j == 0]){
+				return false;
+			}
+			if(j!== 3 && grid[i][j] === grid[i][j+1]){
+				return false;
+			}
+			if(i!== 3 && grid[i][j] === grid[i+1][j]){
+				return false;
+			}
+		}
+		return true;
+	}
+}
 
 const blankGrid=()=>{
 return[
@@ -11,9 +29,11 @@ return[
 
 function setup(){
 	createCanvas(800,800);
+	noLoop();
 	grid=blankGrid();
 	addNumber();
 	addNumber();
+	updateCanvas();
 }
 
 const addNumber=()=>{
@@ -108,6 +128,11 @@ function keyPressed(){
 		if(changed){
 			addNumber();
 		}
+		updateCanvas();
+		let gameover = isGameOver();
+		if(gameover){
+			alert("Game Over");
+		}
 	}
 }
 
@@ -118,9 +143,10 @@ function operate(row){
 	return row;
 }
 
-function draw(){
+function updateCanvas(){
 	background(255);
 	drawGrid();
+	select('#score').html(score);
 }
 
 const slide=row=>{
@@ -137,6 +163,7 @@ const combine=row=>{
 		 		b = row[i-1];
 		if(a===b){
 			row[i] = a+b;
+			score +=row[i];
 			row[i-1] = 0;
 		}
 	}
