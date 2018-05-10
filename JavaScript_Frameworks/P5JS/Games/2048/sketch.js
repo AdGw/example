@@ -7,10 +7,8 @@ function setup(){
 		[0,0,0,0],
 		[0,0,0,0]
 	];
-	console.table(grid)
 	addNumber();
 	addNumber();
-	console.table(grid)
 }
 
 const addNumber=()=>{
@@ -31,9 +29,41 @@ const addNumber=()=>{
 	grid[spot.x][spot.y] = r > 0.5 ? 2 : 4;
 }
 
+function keyPressed(){
+	console.log("x");
+	if(key == ' '){
+		for(let i = 0;i<4;i++){
+			grid[i]=slide(grid[i]);
+			combine(grid[i]);
+		}
+	}
+	addNumber();
+}
+
 function draw(){
 	background(255);
 	drawGrid();
+}
+
+const slide=row=>{
+	let arr = row.filter(value=>value),
+			missing = 4-arr.length,
+			zeros = Array(missing).fill(0);
+			arr = zeros.concat(arr);
+			return arr;
+}
+
+const combine=row=>{
+	for (let i = 3; i >=1; i--) {
+		let a = row[i],
+		 		b = row[i-1];
+		if(a===b){
+			row[i] = a+b;
+			row[i-1] = 0;
+			break;
+		}
+	}
+	return row;
 }
 
 const drawGrid = () =>{
