@@ -48,10 +48,11 @@ const addNumber=()=>{
 			}
 		}
 	}
-	if(options.length > 0);
+	if(options.length > 0){
 	let spot = random(options),
 			r = random(1)
 	grid[spot.x][spot.y] = r > 0.5 ? 2 : 4;
+	}
 }
 
 const compare=(a,b)=>{
