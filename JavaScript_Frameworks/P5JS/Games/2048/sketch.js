@@ -1,34 +1,42 @@
-let grid;
-let score = 0;
+let grid,
+		grid_new,
+		score = 0;
 
 function setup(){
 	createCanvas(800,800);
 	noLoop();
 	grid=blankGrid();
+	grid_new=blankGrid();
 	addNumber();
 	addNumber();
 	updateCanvas();
 }
 
-function keyPressed(){
-	let flipped = false,
-			rotated = false,
-			played = true;
-	if(keyCode ===DOWN_ARROW){
-	}else if(keyCode ===UP_ARROW){
-		grid = flipGrid(grid);
-		flipped=true;
-	}else if(keyCode ===RIGHT_ARROW){
-		grid = rotateGrid(grid);
-		rotated = true;
-	}else if(keyCode ===LEFT_ARROW){
-		grid = rotateGrid(grid);
-		grid = flipGrid(grid);
-		rotated = true;
-		flipped = true;
-	}else{
-		played = false;
-	}
+function keyPressed() {
+  let flipped = false;
+  let rotated = false;
+  let played = true;
+  switch (keyCode) {
+    case DOWN_ARROW:
+      break;
+    case UP_ARROW:
+      grid = flipGrid(grid);
+      flipped = true;
+      break;
+    case RIGHT_ARROW:
+      grid = transposeGrid(grid);
+      rotated = true;
+      break;
+    case LEFT_ARROW:
+      grid = transposeGrid(grid);
+      grid = flipGrid(grid);
+      rotated = true;
+      flipped = true;
+      break;
+    default:
+      played = false;
+  }
+
 	if(played){
 		let past = copyGrid(grid);
 		for(let i = 0; i<4; i++){
@@ -39,9 +47,7 @@ function keyPressed(){
 			grid = flipGrid(grid);
 		}
 		if(rotated){
-			grid = rotateGrid(grid);
-			grid = rotateGrid(grid);
-			grid = rotateGrid(grid);
+			grid = transposeGrid(grid);
 		}
 		if(changed){
 			addNumber();
@@ -65,26 +71,34 @@ function updateCanvas(){
 }
 
 const drawGrid = () =>{
-	let w = 100;
-	for(let i = 0;i<4;i++){
-		for(let j = 0;j<4;j++){
-			noFill();
-			strokeWeight(2);
-			stroke(0)
-			rect(w*i,w*j,w,w);
-
-			let value = grid[i][j];
-			if(grid[i][j] !== 0){
-				textAlign(CENTER, CENTER);
-				let s = "" + value,
-						len = s.length-1,
-						sizes = [64,64,32,16];
-
-				textSize(sizes[len]);
-				fill(0);
-				noStroke();
-				text(value, i*w+w/2,j*w+w/2)
-			}
-		}
+	  let w = 100;
+	  for (let i = 0; i < 4; i++) {
+	    for (let j = 0; j < 4; j++) {
+	      noFill();
+	      strokeWeight(2);
+	      let value = grid[i][j];
+	      let s = value.toString();
+	      if (grid_new[i][j] === 1) {
+	        stroke(100, 0, 100);
+	        strokeWeight(8);
+	        grid_new[i][j] = 0;
+	      } else {
+	        strokeWeight(4);
+	        stroke(0);
+	      }
+	      if (value != 0) {
+	        fill(colorsSizes[s].color);
+	      } else {
+	        noFill();
+	      }
+	      rect(i * w, j * w, w, w, 30);
+	      if (value !== 0) {
+	        textAlign(CENTER, CENTER);
+	        noStroke();
+	        fill(0);
+	        textSize(colorsSizes[s].size);
+	        text(value, i * w + w / 2, j * w + w / 2);
+	      }
+	    }
+	  }
 	}
-}

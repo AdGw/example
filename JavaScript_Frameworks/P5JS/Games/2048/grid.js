@@ -3,7 +3,7 @@ const blankGrid=()=>[
 		[0,0,0,0],
 		[0,0,0,0],
 		[0,0,0,0]
-	];
+];
 
 const compare=(a,b)=>{
 	for(let i = 0;i<4;i++){
@@ -16,7 +16,7 @@ const compare=(a,b)=>{
 	return false;
 }
 
-const copyGrid=(grid)=>{
+const copyGrid=grid=>{
 	let ex=blankGrid();
 		for(let i = 0;i<4;i++){
 			for(let j = 0;j<4;j++){
@@ -33,13 +33,13 @@ const flipGrid=grid=>{
 	return grid;
 }
 
-const rotateGrid=grid=>{
+const transposeGrid=grid=>{
 	let newGrid = blankGrid()
 	for(let i = 0; i<4; i++){
 		for(let j = 0; j<4; j++){
-			newGrid[i][j] = grid[j][i];
+        newGrid[i][j] = grid[j][i];
+      }
 		}
-	}
 	return newGrid;
 }
 
@@ -57,7 +57,8 @@ const addNumber=()=>{
 	}
 	if(options.length > 0){
   	let spot = random(options),
-  			r = random(1)
-  	grid[spot.x][spot.y] = r > 0.5 ? 2 : 4;
+  			r = random(1);
+  	grid[spot.x][spot.y] = r > 0.1 ? 2 : 4;
+    grid_new[spot.x][spot.y] = 1;
   }
 }
