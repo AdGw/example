@@ -1,6 +1,6 @@
 let grid,
-		grid_new,
-		score = 0;
+	grid_new,
+	score = 0;
 
 function setup(){
 	createCanvas(800,800);
@@ -87,7 +87,7 @@ const drawGrid = () =>{
 	        stroke(0);
 	      }
 	      if (value != 0) {
-	        fill(colorsSizes[s].color);
+	        // fill(colorsSizes[s].color);
 	      } else {
 	        noFill();
 	      }
@@ -96,7 +96,8 @@ const drawGrid = () =>{
 	        textAlign(CENTER, CENTER);
 	        noStroke();
 	        fill(0);
-	        textSize(colorsSizes[s].size);
+	        textSize(32);
+	        // textSize(colorsSizes[s].size);
 	        text(value, i * w + w / 2, j * w + w / 2);
 	      }
 	    }
