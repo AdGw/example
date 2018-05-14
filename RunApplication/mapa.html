@@ -7,9 +7,7 @@
     <meta name="author" content="Adrian Gwoździej">
     <meta name="viewport" content="initial-scale=1.0">
     <title>Application</title>
-    <!-- Bootstrap core CSS -->
     <link href="bootstrap-3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
     <link href="bootstrap-3.3.7/docs/examples/navbar/navbar.css" rel="stylesheet">
     <link href="css/assets/rangeslider/rangeslider.css" rel="stylesheet">
     <link href ="css/style.css" rel = "stylesheet" type ="text/css">
@@ -19,44 +17,39 @@
       <div id="floating-panel">
         <div id="map">
         </div>
-        <p class = "center">
-          Total Distance:
-          <span id="total" ></span>
-        </p>
-        <div id="elevation_chart"> 
-        </div>
+        <p class = "center">Total Distance:<span id="total"></span></p>
+        <div id="elevation_chart"></div>
         <div class="jumbotron" align="center">
           <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <label href="#">
+            <a href="javascript:void(0)" class="closebtn">&times;</a>
+            <div id = "align">
               <div class="row">
                 <div id="modeRadios" class="controls">
                   <input id="address" class="form-control" type="text"
                   placeholder="Enter start address"></br>
                   <input id="distance" type="textbox" class="form-control" type = "text"
                   placeholder="Enter total distance"></br>
-                  Choose an activity:
-                  <input type="radio" name="type" id="walkingMode" checked="checked">
-                  <label for="walkingMode">Run</label>
-                  <input type="radio" name="type" id="bicyclingMode">
-                  <label for="bicyclingMode">Bicycle</label></br>
-                Route Profile:
-                  <input type="radio" name="difficult" value="easy"> Easy
-                  <input type="radio" name="difficult" value="hard"> Hard
-              </div></br>
-              Choose error tolerance
-              <input class="rangeslider" type="range" min="1" max="15 step="1" value="1">
+                    Choose an activity:</br>
+                    <input type="radio" name="type" id="walkingMode" checked="checked">
+                    <label for="walkingMode">Run</label></br>
+                    <input type="radio" name="type" id="bicyclingMode">
+                    <label for="bicyclingMode">Bicycle</label></br></br>
+                    Route Profile:</br>
+                    <input type="radio" name="difficult" value="easy"> Easy</br>
+                    <input type="radio" name="difficult" value="hard"> Hard</br></br>
+                  Choose error tolerance</br></br>
+                  <input class="rangeslider" type="range" min="1" max="15 step="1" value="7">
+                </div>
+                <div class="btn btn-lg btn-primary calculate-road">
+                    Turn on
+                </div>
+              </div>
             </div>
-            <div class="btn btn-lg btn-primary calculate-road" onclick="closeNav()" >
-            Turn on
-            </div>
-          </label>
           </div>
-          <span class = "cursor" onclick="openNav()">&#9776;</span> 
+          <span class = "cursor">&#9776;</span> 
         </div>
       </div>
     </div>
-
 
     <script src="./js/assets/jquery/jquery.js" type="text/javascript"></script>
     <script src="js/assets/rangeslider/rangeslider.js"></script>

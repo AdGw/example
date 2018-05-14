@@ -63,23 +63,23 @@
 
     // askForGeolocation asks user if he wants to use geolocation to get his
     // position which can be used as marker. Also sets position.
-    const askForGeolocation=()=> {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position)=> {
-            let pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-            userPosition = pos;
-            setUserPosition(pos);
-          },()=> {
-            handleGeoLocationError(true, infoWindow, gmap.getCenter());
-          });
-      } else {
-        // Browser doesn't support Geolocation.
-        handleGeoLocationError(false, infoWindow, gmap.getCenter());
-      }
-    }
+    // const askForGeolocation=()=> {
+    //   if (navigator.geolocation) {
+    //     navigator.geolocation.getCurrentPosition((position)=> {
+    //         let pos = {
+    //           lat: position.coords.latitude,
+    //           lng: position.coords.longitude
+    //         };
+    //         userPosition = pos;
+    //         setUserPosition(pos);
+    //       },()=> {
+    //         handleGeoLocationError(true, infoWindow, gmap.getCenter());
+    //       });
+    //   } else {
+    //     // Browser doesn't support Geolocation.
+    //     handleGeoLocationError(false, infoWindow, gmap.getCenter());
+    //   }
+    // }
 
     // Get user position from geolocation if tryGelocation is set as true
     // and sets it on map.
