@@ -1,5 +1,5 @@
 #map {
-    height: 80%;
+    height: 85%;
     width: 100%;
     position: relative;
 }
@@ -9,11 +9,12 @@
     padding-top: 0px;
     padding-bottom: 0px;
     width: 100%;
-    top: 63%; 
-    left: 1px; 
+/*    height: 25%;*/
+    top: 0%; 
     z-index: 99; 
-    background: rgb(255, 255, 255); /* This is for ie8 and below */
-    background: rgba(200, 200, 200, 0.2); 
+    background: rgb(30,144,255); /* This is for ie8 and below */
+    background: rgba(30,144,255, 0.2); 
+   
 }
 
 html, body, .container {
@@ -68,11 +69,60 @@ html, body, .container {
 
 .form-control{
     width: 20%;
-    float: left;
+    text-align: center;
 }
 
 .center{
     margin-top: 15px;
     text-align: center;
     font-size: 24px;
+}
+
+.rangeslider{
+    width: 20%
+}
+
+
+/*SIDE NAV*/
+
+.sidenav {
+    height: 50%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #222;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 20px;
+}
+
+
+.sidenav label {
+    padding: 8px 8px 8px 8px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #aaa;
+    display: inline;
+    transition: 1s;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 32px;
+    margin-left: 50px;
+}
+
+.cursor{
+    font-size:70px;
+    cursor:pointer;
+
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav label {font-size: 18px;}
 }

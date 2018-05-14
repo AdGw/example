@@ -26,30 +26,37 @@
         <div id="elevation_chart"> 
         </div>
         <div class="jumbotron" align="center">
-          <div class="row">
-            <div id="modeRadios" class="controls">
-              <input id="address" class="form-control" type="text"
-              placeholder="Enter start address">
-              <input id="distance" type="textbox" class="form-control" type = "text"
-              placeholder="Enter total distance">
-              Choose an activity:
-              <input type="radio" name="type" id="walkingMode" checked="checked">
-              <label for="walkingMode">Run</label>
-              <input type="radio" name="type" id="bicyclingMode">
-              <label for="bicyclingMode">Bicycle</label>
-            Route Profile:
-              <input type="radio" name="difficult" value="easy"> Easy
-              <input type="radio" name="difficult" value="hard"> Hard
+          <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <label href="#">
+              <div class="row">
+                <div id="modeRadios" class="controls">
+                  <input id="address" class="form-control" type="text"
+                  placeholder="Enter start address"></br>
+                  <input id="distance" type="textbox" class="form-control" type = "text"
+                  placeholder="Enter total distance"></br>
+                  Choose an activity:
+                  <input type="radio" name="type" id="walkingMode" checked="checked">
+                  <label for="walkingMode">Run</label>
+                  <input type="radio" name="type" id="bicyclingMode">
+                  <label for="bicyclingMode">Bicycle</label></br>
+                Route Profile:
+                  <input type="radio" name="difficult" value="easy"> Easy
+                  <input type="radio" name="difficult" value="hard"> Hard
+              </div></br>
+              Choose error tolerance
+              <input class="rangeslider" type="range" min="1" max="15 step="1" value="1">
             </div>
-            <input class="rangeslider" type="range" min="1" max="15 step="1" value="1">
-            Choose error tolerance
+            <div class="btn btn-lg btn-primary calculate-road" onclick="closeNav()" >
+            Turn on
+            </div>
+          </label>
           </div>
-          <div class="btn btn-lg btn-primary calculate-road">
-          Turn on
-          </div>
+          <span class = "cursor" onclick="openNav()">&#9776;</span> 
         </div>
       </div>
     </div>
+
 
     <script src="./js/assets/jquery/jquery.js" type="text/javascript"></script>
     <script src="js/assets/rangeslider/rangeslider.js"></script>
@@ -63,6 +70,7 @@
     <script src="./js/objects/routes.js"></script>
     <script src="./js/objects/map.js"></script>
     <script src="./js/objects/navigation.js"></script>
+    <script src="./js/objects/interface.js"></script>
     <!-- pages scripts -->
     <script src="js/map-page.js" type="text/javascript" ></script>
   </body>
