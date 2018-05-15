@@ -143,6 +143,9 @@ const initMapPage=$mapPage=> {
     routesObj.convAddrToLoc(gmap, address);
     if(address !== "" && distance !== ""){
       document.getElementById("map").style.opacity = "0.2";
+      let div = document.createElement('div');
+      div.setAttribute('class', 'spinner');
+      document.body.appendChild(div); 
     }
   });
 

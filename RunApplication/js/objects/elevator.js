@@ -154,6 +154,7 @@
         showPolyline(p);
         prepareAndShowElevation(p);
         document.getElementById("map").style.opacity = "1";
+        $('.spinner').remove();
       })
     });
 
