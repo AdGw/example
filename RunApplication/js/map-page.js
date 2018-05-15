@@ -126,7 +126,7 @@ const initMapPage=$mapPage=> {
 
   // On submit address get new address from form and add it into
   // routes object.
-  $submitDistBtn.on('click', function() {
+  $submitDistBtn.on('click', ()=> {
     let address = $address.val();
     // Modify old route - change origin and destination.
     route.origin = address;
@@ -136,11 +136,14 @@ const initMapPage=$mapPage=> {
     return;
   });
 
-  $calculateRoadBtn.on('click', function() {
+  $calculateRoadBtn.on('click', ()=> {
     let address = $address.val();
     distance = $distance.val();
     // Convert address to coordinates.
     routesObj.convAddrToLoc(gmap, address);
+    if(address !== "" && distance !== ""){
+      document.getElementById("map").style.opacity = "0.2";
+    }
   });
 
   // If clicked enter, then use upper click event.

@@ -153,6 +153,7 @@
         gRoute = route;
         showPolyline(p);
         prepareAndShowElevation(p);
+        document.getElementById("map").style.opacity = "1";
       })
     });
 
