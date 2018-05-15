@@ -96,7 +96,10 @@ const initMapPage=$mapPage=> {
     // Modify old route - change origin and destination.
     route.origin = loc.location;
     route.destination = loc.location;
-
+   if ($distance[0].value == "") {
+      window.alert("Please input a distance");
+      return;
+    }
     if ($walkingMode[0].checked) {
       options.travelMode = "WALKING";
     } else if ($bicyclingMode[0].checked) {
