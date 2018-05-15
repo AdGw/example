@@ -334,16 +334,15 @@ button{
 
 .navbar-brand {
     float: right;
-    background-color: #cde7f0;
+    background-color: #5bc0de;
 }
 
 .navbar-default .navbar-brand{
     color: #000000;
-    opacity: 0.9;
 }
 
 .navbar-header{
-    background-color: #cde7f0;
+    background-color: #5bc0de;
 }
 .navbar.navbar-default{
     opacity: 0.85;

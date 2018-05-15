@@ -31,6 +31,8 @@
         strokeWeight: 0,
         map: map
       });
+      document.getElementById("map").style.opacity = "1";
+      $('.spinner').remove();
     }
 
     function countAscents(elev) {
@@ -153,11 +155,8 @@
         gRoute = route;
         showPolyline(p);
         prepareAndShowElevation(p);
-        document.getElementById("map").style.opacity = "1";
-        $('.spinner').remove();
       })
     });
-
   }
 
   // Create namespace 'inz' (object) with possibility to create map object.

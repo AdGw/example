@@ -141,11 +141,13 @@ const initMapPage=$mapPage=> {
     distance = $distance.val();
     // Convert address to coordinates.
     routesObj.convAddrToLoc(gmap, address);
-    if(address !== "" && distance !== ""){
+    if(address !== "" && distance !== "" && distance.match(/^\d+$/)){
       document.getElementById("map").style.opacity = "0.2";
       let div = document.createElement('div');
       div.setAttribute('class', 'spinner');
       document.body.appendChild(div); 
+    }else{
+      alert("Please input data properly")
     }
   });
 
