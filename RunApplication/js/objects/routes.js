@@ -230,7 +230,7 @@
       totalDistance = countDistanceKM(generatedRoute);
       gRoute = generatedRoute;
       // Show total distance.
-      $total.text(totalDistance);
+      $total.text(totalDistance + " km");
 
       // Trigger sends event 'changed' with google route object outside
       // this object (to main-page.js).
