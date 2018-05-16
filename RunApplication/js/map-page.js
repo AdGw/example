@@ -1,21 +1,21 @@
 /* global google, inz */
-const initMapPage=$mapPage=> {
+const initMapPage = $mapPage => {
   // Prepare visualisation chart.
-  google.load('visualization', '1', {
-    packages: ['columnchart']
+  google.load("visualization", "1", {
+    packages: ["columnchart"]
   });
 
   // Submit new address button.
-  let $submitDistBtn = $mapPage.find('#submit');
+  let $submitDistBtn = $mapPage.find("#submit");
   // New address input in form.
-  let $address = $mapPage.find('#address');
+  let $address = $mapPage.find("#address");
   // let $submitAddressBtn = $mapPage.find('#submitAddress');
-  let $distance = $mapPage.find('#distance');
+  let $distance = $mapPage.find("#distance");
   // let $submitDistanceBtn = $mapPage.find('#submitDistance');
-  let $calculateRoadBtn = $mapPage.find('.calculate-road');
-  let $walkingMode = $mapPage.find('#walkingMode');
-  let $bicyclingMode = $mapPage.find('#bicyclingMode');
-  let $distanceRange = $mapPage.find('.rangeslider');
+  let $calculateRoadBtn = $mapPage.find(".calculate-road");
+  let $walkingMode = $mapPage.find("#walkingMode");
+  let $bicyclingMode = $mapPage.find("#bicyclingMode");
+  let $distanceRange = $mapPage.find(".rangeslider");
 
   let $easyDifficult = $mapPage.find('input[value="easy"]');
   let $hardDifficult = $mapPage.find('input[value="hard"]');
@@ -38,8 +38,8 @@ const initMapPage=$mapPage=> {
   // find('#map')[0] because we select first element.
   // Find is searching for all elements with id = map, but
   // we have always one id per page.
-  let $map = $mapPage.find('#map')[0];
-  let $elevationChart = $mapPage.find('#elevation_chart')[0];
+  let $map = $mapPage.find("#map")[0];
+  let $elevationChart = $mapPage.find("#elevation_chart")[0];
 
   let mapObj = inz.map.create($map, true);
   // Get google map object from mapObj closure.
@@ -67,25 +67,25 @@ const initMapPage=$mapPage=> {
   let originAutoComplete = new google.maps.places.Autocomplete($address[0]);
 
   // When autocomplete is selected, change location.
-  originAutoComplete.addListener('place_changed', function() {
+  originAutoComplete.addListener("place_changed", function() {
     // Get geometry of selected place from autocomplete field.
     originAutoComplete.getPlace();
   });
 
   // Handle routes object events.
-  routesObj.on('changed', data=> {
+  routesObj.on("changed", data => {
     elevatorObj.setPath(data.gRoute, data.route, difficulty);
   });
 
-  elevatorObj.on('generate-new', (()=> {
+  elevatorObj.on("generate-new", () => {
     let percTol = $distanceRange.val();
     routesObj.addWaypoint(route.origin, distance, percTol);
-  }));
-  elevatorObj.on('show-map', data=> {
+  });
+  elevatorObj.on("show-map", data => {
     routesObj.showRouteWithWaypoints(data.gRoute);
   });
 
-  routesObj.on('location', loc=> {
+  routesObj.on("location", loc => {
     if ($.isEmptyObject(loc)) {
       return;
     }
@@ -96,7 +96,7 @@ const initMapPage=$mapPage=> {
     // Modify old route - change origin and destination.
     route.origin = loc.location;
     route.destination = loc.location;
-   if ($distance[0].value == "") {
+    if ($distance[0].value == "") {
       window.alert("Please input a distance");
       return;
     }
@@ -126,7 +126,7 @@ const initMapPage=$mapPage=> {
 
   // On submit address get new address from form and add it into
   // routes object.
-  $submitDistBtn.on('click', ()=> {
+  $submitDistBtn.on("click", () => {
     let address = $address.val();
     // Modify old route - change origin and destination.
     route.origin = address;
@@ -136,23 +136,23 @@ const initMapPage=$mapPage=> {
     return;
   });
 
-  $calculateRoadBtn.on('click', ()=> {
+  $calculateRoadBtn.on("click", () => {
     let address = $address.val();
     distance = $distance.val();
     // Convert address to coordinates.
     routesObj.convAddrToLoc(gmap, address);
-    if(address !== "" && distance !== "" && distance.match(/^\d+$/)){
+    if (address !== "" && distance !== "" && distance.match(/^\d+$/)) {
       document.getElementById("map").style.opacity = "0.2";
-      let div = document.createElement('div');
-      div.setAttribute('class', 'spinner');
-      document.body.appendChild(div); 
-    }else{
-      alert("Please input data properly")
+      let div = document.createElement("div");
+      div.setAttribute("class", "spinner");
+      document.body.appendChild(div);
+    } else {
+      alert("Please input data properly");
     }
   });
 
   // If clicked enter, then use upper click event.
-  $address.on('keyup', function(e) {
+  $address.on("keyup", function(e) {
     // preventDefault stops another events and use only this one.
     // It is neccessary to fuck off google.
     e.preventDefault();
@@ -160,12 +160,11 @@ const initMapPage=$mapPage=> {
       $submitDistBtn.trigger("click");
     }
   });
-
-}
+};
 
 // function() is a document ready. It is needed to load all scripts.
 (function($) {
-  let $mapPage = $('#mapPage');
+  let $mapPage = $("#mapPage");
   if ($mapPage.length === 0) {
     return;
   }
