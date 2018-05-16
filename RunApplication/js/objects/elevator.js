@@ -81,6 +81,7 @@
       let chart = new google.visualization.ColumnChart($elevator);
       // Draw elevation chart.
       chart.draw(data, {
+        fontSize: 14,
         height: 150,
         hAxis: {
           textStyle: {
@@ -89,8 +90,8 @@
           }
         },
         legend: 'none',
-        titleY: 'Wysokosc(m)',
-        titleX: 'Dystans(km)'
+        titleY: 'Height(m)',
+        titleX: 'Distance(km)'
       });
     }
 
