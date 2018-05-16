@@ -31,8 +31,6 @@
         strokeWeight: 0,
         map: map
       });
-      document.getElementById("map").style.opacity = "1";
-      $('.spinner').remove();
     }
 
     function countAscents(elev) {
@@ -79,6 +77,8 @@
 
     const drawElevation=data=> {
       let chart = new google.visualization.ColumnChart($elevator);
+      document.getElementById("map").style.opacity = "1";
+      $('.spinner').remove();
       // Draw elevation chart.
       chart.draw(data, {
         fontSize: 14,
