@@ -26,10 +26,12 @@ function Polygon(){
 			this.edges[i].middle();
 		}
 		for(let i in this.edges){
-			if(0 !== i){
-				this.edges[0].findEnds(this.edges[i]);
+			for(let j in this.edges){
+				if(i !== j){
+					this.edges[i].findEnds(this.edges[j]);
+				}
 			}
-		}	
+		}
 	}
 
 	this.show = ()=>{
