@@ -15,8 +15,10 @@ function Edge(a, b){
 		mid.mult(0.5);
 		let v1 = p5.Vector.sub(this.a, mid);
 		let v2 = p5.Vector.sub(this.b, mid);
+		v1.rotate(60);
+		v2.rotate(60);
 
-		this.h1 = new Middle(a,v1);
-		this.h2 = new Middle(b,v2);
+		this.h1 = new Middle(mid,v1);
+		this.h2 = new Middle(mid,v2);
 	}
 }
