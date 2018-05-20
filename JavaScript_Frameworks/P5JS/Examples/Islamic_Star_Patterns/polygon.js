@@ -21,6 +21,12 @@ function Polygon(){
 		this.edges.push(edge);
 	}
 
+	this.middle = () =>{
+		for(let i in this.edges){
+			this.edges[i].middle();
+		}
+	}
+
 	this.show = ()=>{
 		for(let i in this.edges){
 			this.edges[i].show();

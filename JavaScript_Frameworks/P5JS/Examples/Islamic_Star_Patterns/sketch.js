@@ -9,6 +9,7 @@ function setup(){
 	poly.addVertex(200,200);
 	poly.addVertex(100,200);
 	poly.close();
+	poly.middle();
 	poly.show();
 }
 
