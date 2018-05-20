@@ -25,6 +25,11 @@ function Polygon(){
 		for(let i in this.edges){
 			this.edges[i].middle();
 		}
+		for(let i in this.edges){
+			if(0 !== i){
+				this.edges[0].findEnds(this.edges[i]);
+			}
+		}	
 	}
 
 	this.show = ()=>{
