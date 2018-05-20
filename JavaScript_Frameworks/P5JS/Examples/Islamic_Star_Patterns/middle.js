@@ -7,7 +7,7 @@ function Middle(a,v){
 	this.show = () =>{
 		stroke(255);
 		line(this.a.x, this.a.y, this.end.x, this.end.y);
-		
+
 		// fill(255);
 		// ellipse(this.a.x, this.a.y, 4);
 		// if(this.end){
@@ -35,12 +35,15 @@ function Middle(a,v){
 			let d1 = p5.Vector.dist(candidate, this.a);
 			let d2 = p5.Vector.dist(candidate, other.a);
 			let d = d1+d2;
-			if(!this.end){
-				this.end = candidate;
-				this.previousD = d;
-			}else if(d<this.previousD){
-				this.previousD = d;
-				this.end = candidate;
+			let diff = abs(d1-d2)
+			if(diff < 0.001){
+				if(!this.end){
+					this.end = candidate;
+					this.previousD = d;
+				}else if(d<this.previousD){
+					this.previousD = d;
+					this.end = candidate;
+				}
 			}
 		}
 	}
