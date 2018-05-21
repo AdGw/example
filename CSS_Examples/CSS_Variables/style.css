@@ -1,0 +1,15 @@
+:root{
+    --site-bg: #daffff;
+}
+
+body{
+    background: var(--site-bg);
+}
+
+.container{
+    --type-weight: bold;
+}
+
+.container, .wrapper{
+    font-weight: var(--type-weight, bold);
+}
