@@ -31,7 +31,7 @@ productSelect.addEventListener("change", ev=>{
 
 ratingControl.addEventListener('blur', ev=>{
     const rating = ev.target.value;
-    if(rating > 5){
+    if(rating > 5 || rating < 1){
         alert("Please set rating between 1-5");
         return;
     }
