@@ -34,3 +34,29 @@ prediction = knn5.predict([[2,4,3,1],[4,6,5,3]])
 type(prediction)
 # [0 1] - setosa, versicolor
 print(prediction)
+
+#LOGISTIC REGRESSION#
+
+from sklearn.linear_model import LogisticRegression
+logistic = LogisticRegression()
+logistic.fit(X,y)
+print(logistic)
+
+prediction_lr = logistic.predict([[2,4,3,1],[4,6,5,3]])
+print(prediction_lr)
+print(iris.target_names)
+
+prediction = knn.predict([[5.1,3.5,1.4,0.2],[6.3,3.3,4.7,1.6]])
+# [0] - setosa
+print(prediction)
+
+prediction = knn5.predict([[5.1,3.5,1.4,0.2],[6.3,3.3,4.7,1.6]])
+# [0 2] - setosa, virginica
+print(prediction)
+
+knn5 = KNeighborsClassifier(n_neighbors=5)
+knn5.fit(X,y)
+prediction = knn5.predict([[5.1,3.5,1.4,0.2],[6.3,3.3,4.7,1.6]])
+type(prediction)
+# [0 1] - setosa, versicolor
+print(prediction)
