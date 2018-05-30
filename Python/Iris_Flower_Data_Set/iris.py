@@ -3,6 +3,10 @@ HTML('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data')
 HTML('<iframe src = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"</iframe>')
 
 from sklearn.datasets import load_iris
+from sklearn import metrics
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
 iris = load_iris()
 type(iris)
 
@@ -15,7 +19,7 @@ print(type(iris.target))
 X = iris.data
 y = iris.target
 
-from sklearn.neighbors import KNeighborsClassifier
+
 knn = KNeighborsClassifier(n_neighbors=1)
 print(knn)
 knn.fit(X,y)
@@ -37,7 +41,6 @@ print(prediction)
 
 #LOGISTIC REGRESSION#
 
-from sklearn.linear_model import LogisticRegression
 logistic = LogisticRegression()
 logistic.fit(X,y)
 print(logistic)
@@ -60,3 +63,28 @@ prediction = knn5.predict([[5.1,3.5,1.4,0.2],[6.3,3.3,4.7,1.6]])
 type(prediction)
 # [0 1] - setosa, versicolor
 print(prediction)
+
+X_train, X_test, y_train, y_test = train_test_split(X,y, test_size = 0.4, random_state = 4)
+print(X.shape)
+print(X_train.shape)
+print(X_test.shape)
+
+print(y_train.shape)
+print(y_test.shape)
+
+logistic = LogisticRegression()
+logistic.fit(X_train, y_train)
+y_pred = logistic.predict(X_test)
+
+print(metrics.accuracy_score(y_test, y_pred))
+#accuracy equal 93,3%
+
+knn.fit(X_train, y_train)
+y_pred = knn.predict(X_test)
+print(metrics.accuracy_score(y_test, y_pred))
+#accuracy equal 95,5%
+
+knn5.fit(X_train, y_train)
+y_pred = knn5.predict(X_test)
+print(metrics.accuracy_score(y_test, y_pred))
+#accuracy equal 93,3%
