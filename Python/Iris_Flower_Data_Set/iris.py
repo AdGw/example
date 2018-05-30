@@ -7,6 +7,8 @@ from sklearn import metrics
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
+from sklearn.model_selection import cross_val_score
+import matplotlib.pyplot as plt
 iris = load_iris()
 type(iris)
 
@@ -88,3 +90,21 @@ knn5.fit(X_train, y_train)
 y_pred = knn5.predict(X_test)
 print(metrics.accuracy_score(y_test, y_pred))
 #accuracy equal 93,3%
+
+#K FOLD CROSS VALIDATION#
+knn = KNeighborsClassifier(n_neighbors = 5)
+scores = cross_val_score(knn, X, y, cv=10, scoring='accuracy')
+print(scores.mean())
+#accuracy equal 96,6%
+
+k_range = range(1,45)
+k_scores = []
+for k in k_range:
+    knn = KNeighborsClassifier(n_neighbors = k)
+    scores = cross_val_score(knn, X, y, cv=10, scoring = 'accuracy')
+    k_scores.append(scores.mean())
+print(k_scores)
+
+plt.plot(k_range, k_scores)
+plt.xlabel('K value for KNN algorithm');
+plt.ylabel('Accuracy value')
