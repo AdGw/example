@@ -1,0 +1,36 @@
+{
+	"version": 3,
+	"file": "../scss/main.css",
+	"sources": [
+		"../scss/main.scss",
+		"../scss/base/_variables.scss",
+		"../scss/base/_mixins.scss",
+		"../scss/base/_normalize.scss",
+		"../scss/base/_base.scss",
+		"../scss/modules/_blocks.scss",
+		"../scss/modules/_buttons.scss",
+		"../scss/modules/_components.scss",
+		"../scss/modules/_sections.scss",
+		"../scss/modules/_topography.scss",
+		"../scss/layouts/_nav.scss",
+		"../scss/layouts/_footer.scss",
+		"../scss/layouts/_header.scss"
+	],
+	"sourcesContent": [
+		"/*\r\nSkypeApp Bootstrap Theme\r\n*/\r\n\r\n/*\r\nBase - base styles, variables, mixins\r\n*/\r\n\r\n@import 'base/_variables.scss';\r\n@import 'base/_mixins.scss';\r\n@import 'base/_normalize.scss';\r\n@import 'base/_base.scss';\r\n\r\n/*\r\nModules - site components\r\n*/\r\n\r\n@import 'modules/_blocks.scss';\r\n@import 'modules/_buttons.scss';\r\n@import 'modules/_components.scss';\r\n@import 'modules/_sections.scss';\r\n@import 'modules/_topography.scss';\r\n\r\n/*\r\nLayouts - page layout, styles\r\n*/\r\n\r\n@import 'layouts/_nav.scss';\r\n@import 'layouts/_footer.scss';\r\n@import 'layouts/_header.scss';",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		"",
+		""
+	],
+	"mappings": "AAAA;;EAEE;AAEF;;EAEE;AAOF;;EAEE;AAQF;;EAEE",
+	"names": []
+}
