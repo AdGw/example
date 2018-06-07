@@ -1,0 +1,27 @@
+@media (max-width: 768px) {
+  /* line 2, C:/Users/Adi/Documents/Coding/AllOtherStuff/HTML_Templates/Skype_Website/scss/layouts/mobile.scss */
+  .search {
+    display: inline-block;
+    text-align: center;
+  }
+  /* line 7, C:/Users/Adi/Documents/Coding/AllOtherStuff/HTML_Templates/Skype_Website/scss/layouts/mobile.scss */
+  .device {
+    display: block;
+    margin: 20px auto 0 auto;
+  }
+  /* line 12, C:/Users/Adi/Documents/Coding/AllOtherStuff/HTML_Templates/Skype_Website/scss/layouts/mobile.scss */
+  .device-small {
+    margin-bottom: 20px !important;
+  }
+  /* line 17, C:/Users/Adi/Documents/Coding/AllOtherStuff/HTML_Templates/Skype_Website/scss/layouts/mobile.scss */
+  .footer-main ul {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  /* line 22, C:/Users/Adi/Documents/Coding/AllOtherStuff/HTML_Templates/Skype_Website/scss/layouts/mobile.scss */
+  .footer-main h4 {
+    text-align: center;
+  }
+}
+
+/*# sourceMappingURL=../../css/layouts/mobile.map */

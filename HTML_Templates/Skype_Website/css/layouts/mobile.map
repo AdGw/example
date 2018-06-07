@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "../../scss/layouts/mobile.css",
+	"sources": [
+		"../../scss/layouts/mobile.scss"
+	],
+	"sourcesContent": [
+		"@media(max-width:768px){\r\n\t.search{\r\n\t\tdisplay:inline-block;\r\n\t\ttext-align:center;\r\n\t}\r\n\t\r\n\t.device{\r\n\t\tdisplay:block;\r\n\t\tmargin:20px auto 0 auto;\r\n\t}\r\n\t\r\n\t.device-small{\r\n\t\tmargin-bottom:20px !important;\r\n\t}\r\n\t\r\n\t.footer-main{\r\n\t\tul{\r\n\t\t\tmargin-bottom:20px;\r\n\t\t\ttext-align:center;\r\n\t\t}\r\n\t\t\r\n\t\th4{\r\n\t\t\ttext-align:center;\r\n\t\t}\r\n\t}\r\n\t\r\n}"
+	],
+	"mappings": "AAAA,MAAM,EAAL,SAAS,EAAE,KAAK;;EAChB,AAAA,OAAO,CAAA;IACN,OAAO,EAAC,YAAa;IACrB,UAAU,EAAC,MAAO;GAClB;;EAED,AAAA,OAAO,CAAA;IACN,OAAO,EAAC,KAAM;IACd,MAAM,EAAC,gBAAiB;GACxB;;EAED,AAAA,aAAa,CAAA;IACZ,aAAa,EAAC,eAAgB;GAC9B;;EAED,AACC,YADW,CACX,EAAE,CAAA;IACD,aAAa,EAAC,IAAK;IACnB,UAAU,EAAC,MAAO;GAClB;;EAJF,AAMC,YANW,CAMX,EAAE,CAAA;IACD,UAAU,EAAC,MAAO;GAClB",
+	"names": []
+}

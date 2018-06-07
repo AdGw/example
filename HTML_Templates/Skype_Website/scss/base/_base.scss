@@ -1,18 +1,27 @@
 body{
-    font-family: "Segoe UI", "Segoe WP", "Segoe Regular", "sans-serif";
-    font-size: 15px;
-    line-height: 1.7em;
-    color: #ccc;
+	font-family:$base-font-family;
+	font-size:$base-font-size;
+	line-height:1.7em;
+	color:$base-font-color;
 }
 
 a{
-    color:#00aff0;
+	color:$primary-color;
 }
 
-ul, li{
-    list-style: none;
+ul,li{
+	list-style:none;
 }
 
 input, textarea, button{
-    border-radius: 0;
+	@include border-radius(0px);
+}
+
+img.device{
+	width:100%;
+}
+
+img.device-small{
+	width:70%;
+	margin-bottom:-40px;
 }

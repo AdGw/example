@@ -24,7 +24,8 @@ Modules - site components
 /*
 Layouts - page layout, styles
 */
-
+@import 'layouts/_mobile.scss';
+@import 'layouts/_blog.scss';
 @import 'layouts/_nav.scss';
 @import 'layouts/_footer.scss';
 @import 'layouts/_header.scss';
