@@ -4,6 +4,34 @@ SkypeApp Bootstrap Theme
 /*
 Base - base styles, variables, mixins
 */
+/* line 1, C:/Users/Adi/Documents/Coding/AllOtherStuff/HTML_Templates/Skype_Website/scss/base/_normalize.scss */
+h1, h2, h3, h4, h5 {
+  margin-top: 0;
+}
+
+/* line 1, C:/Users/Adi/Documents/Coding/AllOtherStuff/HTML_Templates/Skype_Website/scss/base/_base.scss */
+body {
+  font-family: "Segoe UI", "Segoe WP", "Segoe Regular", "sans-serif";
+  font-size: 15px;
+  line-height: 1.7em;
+  color: #ccc;
+}
+
+/* line 8, C:/Users/Adi/Documents/Coding/AllOtherStuff/HTML_Templates/Skype_Website/scss/base/_base.scss */
+a {
+  color: #00aff0;
+}
+
+/* line 12, C:/Users/Adi/Documents/Coding/AllOtherStuff/HTML_Templates/Skype_Website/scss/base/_base.scss */
+ul, li {
+  list-style: none;
+}
+
+/* line 16, C:/Users/Adi/Documents/Coding/AllOtherStuff/HTML_Templates/Skype_Website/scss/base/_base.scss */
+input, textarea, button {
+  border-radius: 0;
+}
+
 /*
 Modules - site components
 */

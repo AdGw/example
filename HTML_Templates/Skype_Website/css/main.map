@@ -20,8 +20,8 @@
 		"/*\r\nSkypeApp Bootstrap Theme\r\n*/\r\n\r\n/*\r\nBase - base styles, variables, mixins\r\n*/\r\n\r\n@import 'base/_variables.scss';\r\n@import 'base/_mixins.scss';\r\n@import 'base/_normalize.scss';\r\n@import 'base/_base.scss';\r\n\r\n/*\r\nModules - site components\r\n*/\r\n\r\n@import 'modules/_blocks.scss';\r\n@import 'modules/_buttons.scss';\r\n@import 'modules/_components.scss';\r\n@import 'modules/_sections.scss';\r\n@import 'modules/_topography.scss';\r\n\r\n/*\r\nLayouts - page layout, styles\r\n*/\r\n\r\n@import 'layouts/_nav.scss';\r\n@import 'layouts/_footer.scss';\r\n@import 'layouts/_header.scss';",
 		"",
 		"",
-		"",
-		"",
+		"h1,h2,h3,h4,h5{\r\n    margin-top: 0;\r\n}",
+		"body{\r\n    font-family: \"Segoe UI\", \"Segoe WP\", \"Segoe Regular\", \"sans-serif\";\r\n    font-size: 15px;\r\n    line-height: 1.7em;\r\n    color: #ccc;\r\n}\r\n\r\na{\r\n    color:#00aff0;\r\n}\r\n\r\nul, li{\r\n    list-style: none;\r\n}\r\n\r\ninput, textarea, button{\r\n    border-radius: 0;\r\n}",
 		"",
 		"",
 		"",
@@ -31,6 +31,6 @@
 		"",
 		""
 	],
-	"mappings": "AAAA;;EAEE;AAEF;;EAEE;AAOF;;EAEE;AAQF;;EAEE",
+	"mappings": "AAAA;;EAEE;AAEF;;EAEE;;AGNF,AAAA,EAAE,EAAC,AAAA,EAAE,EAAC,AAAA,EAAE,EAAC,AAAA,EAAE,EAAC,AAAA,EAAE,CAAA;EACV,UAAU,EAAE,CAAE;CACjB;;;ACFD,AAAA,IAAI,CAAA;EACA,WAAW,EAAE,qDAAsD;EACnE,SAAS,EAAE,IAAK;EAChB,WAAW,EAAE,KAAM;EACnB,KAAK,EAAE,IAAK;CACf;;;AAED,AAAA,CAAC,CAAA;EACG,KAAK,EAAC,OAAQ;CACjB;;;AAED,AAAA,EAAE,EAAE,AAAA,EAAE,CAAA;EACF,UAAU,EAAE,IAAK;CACpB;;;AAED,AAAA,KAAK,EAAE,AAAA,QAAQ,EAAE,AAAA,MAAM,CAAA;EACnB,aAAa,EAAE,CAAE;CACpB;;AJJD;;EAEE;AAQF;;EAEE",
 	"names": []
 }
