@@ -16,9 +16,12 @@ function setup(){
 		projectId: "color-classification-ab7d3",
 		storageBucket: "color-classification-ab7d3.appspot.com",
 		messagingSenderId: "574671660934"
-	  };
+		};
+		
 	firebase.initializeApp(config);
 	database = firebase.database();
+	let ref = database.ref('colors');
+	ref.once('value', gotData);
 
 	createCanvas(400,400);
 	pickColor();
@@ -61,4 +64,30 @@ function sendData(){
 		  pickColor();
 		}
 	}
+}
+
+function gotData(results){
+	let data = results.val();
+
+	let keys = Object.keys(data);
+	console.log(keys.length);
+	let uiduser = {};
+	let users = [];
+	
+	for(let key of keys){
+		let record = data[key];
+		let	id = record.uid;
+		console.log(record.uid)
+		if(!uid[id]){
+			uiduser[id] = 1;
+			user.push(id)
+		}else{
+			uiduser[id]++;
+		}
+	}
+	users.sort((a,b)=>(uiduser[a] - userid[b]));
+	for(let id of users){
+		console.log(id + " " + uiduser[id]);
+	}
+	console.log(uiduser)
 }
