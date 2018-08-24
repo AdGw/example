@@ -16,5 +16,8 @@ class Bicycle {
 }
 let car = new Car(4);
 let bicycle = new Bicycle(2);
-car.drive();
-bicycle.drive();
+function getWheels(veh) {
+    return veh.drive();
+}
+getWheels(car);
+getWheels(bicycle);
