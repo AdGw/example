@@ -1,0 +1,10 @@
+let myName = "Adrian";
+let myAge = 25;
+let canVote = true;
+let anything = "dog";
+document.getElementById("tsStuff").innerHTML = "My Name is " + myName;
+document.write("My age is " + typeof (myAge) + "<br/>");
+document.write("Can i vote? " + typeof (canVote) + "<br/>");
+let strToNum = parseInt("5");
+let numToStr = 5;
+document.write("NumToString is a " + typeof (numToStr.toString()) + "<br/>");
