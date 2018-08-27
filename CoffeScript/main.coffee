@@ -5,8 +5,6 @@ csOutput.innerHTML = "Hello #{name}" + '<br>'
 largestNum = Number.MAX_VALUE
 smallestNum = Number.MIN_VALUE
 
-console.log(largestNum)
-
 largestNumStr = "The largestNum is: #{largestNum} "
 smallestNumStr = "The smallestNum is: #{smallestNum} "
 
