@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Get Data</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div id="comments"></div>
+	<button>Show more..</button>
+	<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function(){
+			let commentCount = 2;
+			$('button').click(function(){
+				commentCount = commentCount +2;
+				$("#comments").load("load-comments.php", {
+					commentNewCount: commentCount
+				});
+			});
+		}); 
+	</script>
+</body>
+</html>
