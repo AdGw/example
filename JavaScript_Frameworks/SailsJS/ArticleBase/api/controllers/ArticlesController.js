@@ -6,26 +6,54 @@
  */
 
 module.exports = {
-  list: function(req, res){
-      Articles.find({}).exec(function(err, articles){
+  list: (req, res)=>{
+      Articles.find({}).exec((err, articles)=>{
           if(err){
             res.send(100, {error: 'Database error'});
           }
           res.view('list', {articles: articles});
       });
   },
-  add: function(req, res){
+  add: (req, res)=>{
       res.view('add');
   },
-  create: function(req, res){
+  create: (req, res)=>{
     let title = req.body.title;
     let body = req.body.body;
-    Articles.create({title:title, body:body}).exec(function(err){
+    Articles.create({title:title, body:body}).exec(err=>{
         if(err){
             res.send(100, {error: 'Database Error'})
         }
         res.redirect('/articles/list')
     });
+  },
+  delete: (res, req) =>{
+      Articles.destroy({id:req.params.id}).exec(err=>{
+        if(err){
+            res.send(100, {error: 'Database Error'})
+        }
+        res.redirect('/articles/list')
+    });
+    return false;
+  },
+  edit:(res,req) =>{
+    Articles.findOne({id:req.params.id}).exec((err, articles)=>{
+        if(err){
+            res.send(100, {error: 'Database Error'})
+        }
+        res.view('edit', {article:article});
+    });
+  },
+  update:(res,req) =>{
+    let title = req.body.title;
+    let body = req.body.body;
+    Articles.update({id: req.params.id},{title:title, body:body}).exec(err=>{
+        if(err){
+            res.send(100, {error: 'Database Error'})
+        }
+        res.redirect('/articles/list')
+    });
+    return false;
   }
 };
 
