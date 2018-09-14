@@ -1,0 +1,1 @@
+var doSomething=function(){alert("x")},a=2,logSomething=function(){console.log("xx")};doSomething(),logSomething();
