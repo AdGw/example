@@ -5,7 +5,7 @@ let express = require('express'),
 	dust = require('dustjs-helpers'),
 	pg = require('pg'),
 	app = express();
-	conString = "postgres://adgw:1234@localhost/recipedb";
+conString = "postgres://adgw:1234@localhost/recipedb";
 
 app.engine('dust', cons.dust);
 app.set('view engine', 'dust');
@@ -14,11 +14,13 @@ app.set('views', __dirname + '/views');
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({
+	extended: false
+}));
 
-app.get('/',function(req,res){
+app.get('/', function (req, res) {
 	res.render('index');
 });
-app.listen(3000,function(){
+app.listen(3000, function () {
 	console.log('x');
 });
