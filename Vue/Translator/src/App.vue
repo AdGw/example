@@ -22,10 +22,12 @@ export default {
     };
   },
   methods: {
-    translateText: function(text) {
+    translateText: function(text, language) {
       this.$http
         .get(
-          "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20190115T114934Z.eacaed35194efee2.f853a351e04382ea66dd8d76823814165d590438&lang=ru&text=" +
+          "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20190115T114934Z.eacaed35194efee2.f853a351e04382ea66dd8d76823814165d590438&lang=" +
+            language +
+            "&text=" +
             text
         )
         .then(response => {
