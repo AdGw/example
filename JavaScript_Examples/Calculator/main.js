@@ -69,9 +69,9 @@ for (let i = 0; i < document.querySelectorAll(".btn").length; i++) {
           console.log(array);
           break;
         case 0:
-          if (array[0] === 0) {
-            console.log("X");
-          } else if (array[0] !== 0) {
+          if (array.length === 0) {
+            alert("Chose another number");
+          } else {
             array.push(el);
             document.querySelector(".result").innerHTML = array.join("");
             console.log(array);
