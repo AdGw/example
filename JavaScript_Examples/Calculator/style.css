@@ -1,0 +1,45 @@
+.container {
+  margin-top: 50px;
+  width: 100%;
+}
+
+.display {
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+  height: 35px;
+  background-color: red;
+  border: 3px solid red;
+}
+
+.calculator {
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
+  height: 200px;
+  background-color: #ccc;
+  border: 3px solid red;
+}
+
+p.result {
+  margin-bottom: auto;
+  margin-top: 2px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+  height: 33px;
+  background-color: white;
+  font-size: 30px;
+}
+
+
+button {
+  text-align: center;
+  width: 35px;
+  padding: 10px;
+  font-size: 22px;
+}
+
+.row {
+  margin: auto;
+}
