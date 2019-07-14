@@ -33,7 +33,7 @@ function draw() {
 	for (let p of hull) {
 		vertex(p.x, p.y)
 	}
-	endShape();
+	endShape(CLOSE);
 	stroke(255, 0, 255);
 	point(left.x, left.y)
 
@@ -53,12 +53,18 @@ function draw() {
 
 	if (cross.z < 0) {
 		nextVertex = check;
+		nextIndex = index;
 	}
 	index = index + 1;
 	if (index == points.length) {
-		hull.push(nextVertex);
-		currentVertex = nextVertex;
-		index = 0;
+		if (nextVertex == left) {
+			noLoop();
+		} else {
+			hull.push(nextVertex);
+			currentVertex = nextVertex;
+			index = 0;
+			points.splice(nextIndex, 1);
+			nextVertex = left;
+		}
 	}
-
 }
