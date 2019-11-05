@@ -7,14 +7,16 @@ let filter = {
 function setup() {
   noCanvas();
   // Initialize Firebase
-let config = {
-	apiKey: "AIzaSyCcq-9sW0-3WQ6zoLmzZ5UuXQLLebTRMbI",
-	authDomain: "color-classification-ab7d3.firebaseapp.com",
-	databaseURL: "https://color-classification-ab7d3.firebaseio.com",
-	projectId: "color-classification-ab7d3",
-	storageBucket: "color-classification-ab7d3.appspot.com",
-	messagingSenderId: "574671660934"
-	};
+var firebaseConfig = {
+      apiKey: "AIzaSyDzrZUScnXhP6YpxCWDj1k113hqBnFcoGc",
+      authDomain: "color-classification-eee25.firebaseapp.com",
+      databaseURL: "https://color-classification-eee25.firebaseio.com",
+      projectId: "color-classification-eee25",
+      storageBucket: "color-classification-eee25.appspot.com",
+      messagingSenderId: "664559696364",
+      appId: "1:664559696364:web:f68a040e4af400128a68c9",
+      measurementId: "G-WG36KR82FH"
+    };
 	firebase.initializeApp(config);
   	database = firebase.database();
   	let ref = database.ref('colors');
@@ -39,6 +41,7 @@ function gotData(results) {
     }
   }
 
-  // saveJSON(allData, 'colorData.json');
+  saveJSON(allData, 'colorData.json');
   console.log(allData.entries.length);
 }
+
